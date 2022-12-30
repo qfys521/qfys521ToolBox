@@ -8,8 +8,6 @@ import cn.codethink.qfys521.encryption.MD5Util;
 import cn.codethink.qfys521.encryption.UnicodeUtil;
 import cn.codethink.qfys521.encryption.encryptionInteractor;
 import cn.codethink.qfys521.minecraft.*;
-import cn.codethink.qfys521.phigros.Songs;
-import cn.codethink.qfys521.phigros.phigrosInteractors;
 import cn.codethink.qfys521.xiaoming.TimedTask;
 import cn.codethink.qfys521.xiaoming.quickstop;
 
@@ -40,8 +38,6 @@ public class qfys521UtilPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         getXiaoMingBot().getInteractorManager().registerInteractors(new genshenImpactInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new phigrosInteractors(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new Songs(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new computeInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new encryptionInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new mcIdGetInteractors(), this);
