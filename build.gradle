@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'cn.codethink.qfys521'
-version '3.6.2-SNAPSHOT'
+version '3.6.3.1358build-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -13,6 +13,3 @@ dependencies {
     implementation fileTree(dir: './libs',includes: ['*.jar'])
 }
 
-test {
-    useJUnitPlatform()
-}

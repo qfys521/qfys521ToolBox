@@ -9,10 +9,14 @@ import cn.codethink.qfys521.minecraft.Enchantments.Enchantments;
 import cn.codethink.qfys521.minecraft.Entitys.Entitys;
 import cn.codethink.qfys521.minecraft.Entitys.Items;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class all {
 
 
-    public String getInformaction(String Name) {
+    public List<String> getInformation(String N) {
         Biomes biomes = new Biomes();
         Blocks blocks = new Blocks();
         Liquid liquid = new Liquid();
@@ -20,48 +24,38 @@ public class all {
         Enchantments enchantments = new Enchantments();
         Entitys entitys = new Entitys();
         Items items = new Items();
-        String returnName = null;
-            if (blocks.getBlockName(Name) != null) {
-            returnName = blocks.getBlockName(Name);
-        } else
-            if (blocks.getBlockChineseName(Name) != null) {
-            returnName = blocks.getBlockChineseName(Name);
-        } else
-            if (liquid.getLiquidName(Name) != null) {
-            returnName = liquid.getLiquidName(Name);
-        } else
-            if (liquid.getLiquidChineseName(Name) != null) {
-            returnName = liquid.getLiquidChineseName(Name);
-        } else
-            if (effects.getEffectName(Name) != null) {
-            returnName = effects.getEffectName(Name);
-        } else
-            if (effects.getEffectChineseName(Name) != null) {
-            returnName = effects.getEffectChineseName(Name);
-        } else
-            if (enchantments.getEnchantmentName(Name) != null) {
-            returnName = enchantments.getEnchantmentName(Name);
-        } else
-            if (enchantments.getEnchantmentChineseName(Name) != null) {
-            returnName = enchantments.getEnchantmentChineseName(Name);
-        } else
-            if (entitys.getEntityName(Name) != null) {
-            returnName = entitys.getEntityName(Name);
-        } else
-            if (entitys.getEntityChineseName(Name) != null) {
-            returnName = entitys.getEntityChineseName(Name);
-        } else
-            if (items.getItemName(Name) != null) {
-            returnName = items.getItemName(Name);
-        } else
-            if (items.getItemChineseName(Name) != null) {
-            returnName = items.getItemChineseName(Name);
-        } else
-            if (biomes.getBiomeChineseName(Name) != null) {
-            returnName = biomes.getBiomeChineseName(Name);
-        } else {
-            returnName = biomes.getBiomeName(Name);
-        }
-        return returnName;
+        
+        List<String> list = new ArrayList<>();
+        if(biomes.getBiomeChineseName(N)!=null){list.add("生物群系名称: "+biomes.getBiomeChineseName(N));}
+        if(biomes.getBiomeName(N)!=null){list.add("生物群系ID: "+biomes.getBiomeName(N));}
+
+
+        if(blocks.getBlockChineseName(N)!=null){list.add("方块名称: "+blocks.getBlockChineseName(N));}
+        if(blocks.getBlockName(N)!=null){list.add("方块ID: "+blocks.getBlockName(N));}
+
+
+        if(liquid.getLiquidChineseName(N)!=null){list.add("流体名称: "+liquid.getLiquidChineseName(N));}
+        if(liquid.getLiquidName(N)!=null){list.add("流体ID: "+liquid.getLiquidName(N));}
+
+
+        if(effects.getEffectChineseName(N)!=null){list.add("药水效果名称: "+effects.getEffectChineseName(N));}
+        if(effects.getEffectName(N)!=null){list.add("药水效果ID: "+effects.getEffectName(N));}
+
+
+        if(enchantments.getEnchantmentChineseName(N)!=null){list.add("魔咒名称: "+enchantments.getEnchantmentChineseName(N));}
+        if(enchantments.getEnchantmentName(N)!=null){list.add("魔咒ID: "+enchantments.getEnchantmentName(N));}
+
+
+        if(entitys.getEntityChineseName(N)!=null){list.add("实体名称: "+entitys.getEntityChineseName(N));}
+        if(entitys.getEntityName(N)!=null){list.add("实体ID: "+entitys.getEntityName(N));}
+
+
+        if(items.getItemChineseName(N)!=null){list.add("物品名称: "+items.getItemChineseName(N));}
+        if(items.getItemName(N)!=null){list.add("物品ID: "+items.getItemName(N));}
+
+
+
+
+        return list;
     }
 }

@@ -7,17 +7,25 @@ import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.codethink.qfys521.qfys521UtilPlugin;
 
+import java.util.List;
+
 public class mcIdGetInteractors extends SimpleInteractors<qfys521UtilPlugin> {
     @Filter("(getID|id获取|获取id|IDget) {rn:Name}")
     @Required("mclib.getidPeremission")
     public void main(XiaoMingUser user,@FilterParameter("Name")String Name){
         all all = new all();
-        String something = all.getInformaction(Name);
-        if (something == null){
+        List<String> something = all.getInformation(Name);
+
+        if (something.size() == 0){
             user.sendMessage("无法获取该ID，请检查您输入内容是否正确或者该物品/魔咒/效果/生物群系等是否存在。");
         }else{
-            user.sendMessage("名称:"+Name+"\n"+
-                                        "ID:"+something);
+            StringBuilder sb = new StringBuilder();
+            for (String s : something) {
+                sb.append(s);
+                sb.append("\n");
+            }
+            user.sendMessage(
+                    "ID:"+Name+sb);
         }
     }
 }
