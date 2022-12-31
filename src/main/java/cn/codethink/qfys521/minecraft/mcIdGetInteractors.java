@@ -25,7 +25,7 @@ public class mcIdGetInteractors extends SimpleInteractors<qfys521UtilPlugin> {
                 sb.append("\n");
             }
             user.sendMessage(
-                    "ID:"+Name+sb);
+                    "ID:"+Name+"\n"+sb);
         }
     }
 }
