@@ -3,13 +3,14 @@ plugins {
 }
 
 group 'cn.codethink.qfys521'
-version '3.6.3.1358build-SNAPSHOT'
+version '3.7.1150-build-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
     implementation fileTree(dir: './libs',includes: ['*.jar'])
 }
 

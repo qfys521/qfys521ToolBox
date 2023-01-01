@@ -7,6 +7,7 @@ import cn.codethink.qfys521.compute.computeInteractors;
 import cn.codethink.qfys521.encryption.MD5Util;
 import cn.codethink.qfys521.encryption.UnicodeUtil;
 import cn.codethink.qfys521.encryption.encryptionInteractor;
+import cn.codethink.qfys521.group.dummyMessage;
 import cn.codethink.qfys521.minecraft.*;
 import cn.codethink.qfys521.xiaoming.TimedTask;
 import cn.codethink.qfys521.xiaoming.quickstop;
@@ -45,6 +46,7 @@ public class qfys521UtilPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new UnicodeUtil(),this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new MD5Util(),this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new TimedTask(),this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new dummyMessage(),this);
     }
 
 }
