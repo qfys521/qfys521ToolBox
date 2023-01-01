@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'cn.codethink.qfys521'
-version '3.7.1150-build-SNAPSHOT'
+version '3.8-2130-build-SNAPSHOT'
 
 repositories {
     mavenCentral()
