@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group 'cn.codethink.qfys521'
-version '3.8-2200-build-SNAPSHOT'
+group 'cn.qfys521'
+version '3.9-1810-build-SNAPSHOT'
 
 repositories {
     mavenCentral()
