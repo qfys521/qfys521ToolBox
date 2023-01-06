@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'cn.codethink.qfys521'
-version '3.8-2130-build-SNAPSHOT'
+version '3.8-2200-build-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -11,6 +11,6 @@ repositories {
 
 dependencies {
 
-    implementation fileTree(dir: './libs',includes: ['*.jar'])
+    implementation fileTree(dir: './libs', includes: ['*.jar'])
 }
 
