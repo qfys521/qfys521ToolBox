@@ -34,7 +34,7 @@ public class encryptionInteractor extends SimpleInteractors<qfys521UtilPlugin> {
         int i = 数量;
         if (i <= 0) {
             user.sendError("数量不能小于零!");
-        } else if (i > 20) {
+        } else if (i > 50) {
             user.sendError("数量过多!");
         } else {
             try {
@@ -52,7 +52,7 @@ public class encryptionInteractor extends SimpleInteractors<qfys521UtilPlugin> {
 
     }
 
-    @Filter("Base64加密 {文本内容}")
+    @Filter("Base64Encode {文本内容}")
     @Filter("base64-encode {文本内容}")
     @Required(perm + "base64.lock")
     void base64lock(XiaoMingUser user,
@@ -65,7 +65,7 @@ public class encryptionInteractor extends SimpleInteractors<qfys521UtilPlugin> {
 
     }
 
-    @Filter("Base64解密 {文本内容}")
+    @Filter("Base64Decode {文本内容}")
     @Filter("base64-decode {文本内容}")
     @Required(perm + "base64.unlock")
     void base64unlock(XiaoMingUser user,

@@ -7,9 +7,9 @@ import cn.qfys521.compute.computeInteractors;
 import cn.qfys521.encryption.MD5Util;
 import cn.qfys521.encryption.UnicodeUtil;
 import cn.qfys521.encryption.encryptionInteractor;
-import cn.qfys521.group.dummyMessage;
 import cn.qfys521.minecraft.mcIdGetInteractors;
 import cn.qfys521.xiaoming.FileIO;
+import cn.qfys521.xiaoming.jrrpInteractor;
 import cn.qfys521.xiaoming.xiaoMingEssInteractor;
 
 /**
@@ -48,9 +48,9 @@ public class qfys521UtilPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new mcIdGetInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new UnicodeUtil(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new MD5Util(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new dummyMessage(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new FileIO(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
 
     }
 

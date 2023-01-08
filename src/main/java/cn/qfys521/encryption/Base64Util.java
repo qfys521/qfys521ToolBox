@@ -4,9 +4,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- * @author Miracle Luna
  * @version 1.0
- * @date 2019/7/3 18:55
+ * @date 2023/1/8
  */
 public class Base64Util {
 
@@ -20,7 +19,7 @@ public class Base64Util {
      * 给字符串加密
      *
      * @param text
-     * @return
+     * @return encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8)
      */
     static String encode(String text) {
 
@@ -31,25 +30,9 @@ public class Base64Util {
      * 将加密后的字符串进行解密
      *
      * @param encodedText
-     * @return
+     * @return new String(decoder.decode(encodedText), StandardCharsets.UTF_8)
      */
     static String decode(String encodedText) {
         return new String(decoder.decode(encodedText), StandardCharsets.UTF_8);
     }
-//
-//     static void main(String[] args) {
-//
-//        String username = "Miracle Luna";
-//        String password = "p@sSW0rd";
-//
-//
-//        System.out.println("====  [加密后] 用户名/密码  =====");
-//        System.out.println(Base64Util.encode(username));
-//        System.out.println(Base64Util.encode(password));
-//
-//
-//        System.out.println("\n====  [解密后] 用户名/密码  =====");
-//        System.out.println(Base64Util.decode(Base64Util.encode(username)));
-//        System.out.println(Base64Util.decode(Base64Util.encode(password)));
-//    }
 }
