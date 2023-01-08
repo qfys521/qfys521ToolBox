@@ -5,7 +5,7 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -17,9 +17,9 @@ import java.security.NoSuchAlgorithmException;
  * @author: lv
  * @time: 2020/9/3 9:18
  */
-public class MD5Util extends SimpleInteractors<qfys521UtilPlugin> {
+public class MD5Util extends SimpleInteractors<qfys521ToolBoxPlugin> {
     @Filter("MD5 {r:str}")
-    @Required("qfys521Util.encryption.MD5")
+    @Required("qfys521ToolBox.encryption.MD5")
     public static void main(
             XiaoMingUser BotSender,
             @FilterParameter("str") String str) {

@@ -19,7 +19,7 @@ public class Base64Util {
      * 给字符串加密
      *
      * @param text
-     * @return encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8)
+     * @return encoder.encodeToString(text.getBytes ( StandardCharsets.UTF_8)
      */
     static String encode(String text) {
 

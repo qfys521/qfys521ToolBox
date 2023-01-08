@@ -5,7 +5,7 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import java.util.List;
  * @author 崔素强
  * @url https://blog.csdn.net/cuisuqiang/article/details/41081635
  */
-public class computeInteractors extends SimpleInteractors<qfys521UtilPlugin> {
+public class computeInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> {
     @Filter("简单计算 {text}")
-    @Required("qfys521Util.sum")
+    @Required("qfys521ToolBox.sum")
     public static void main(XiaoMingUser user,
                             @FilterParameter("text") String text) {
         // 规则，只能出现数字和加减乘除符号，最前和最后都是数字，即字符串能有效计算的
@@ -100,10 +100,10 @@ public class computeInteractors extends SimpleInteractors<qfys521UtilPlugin> {
 
             //System.out.println("====最终值====");
             // 打印结果
-            user.sendMessage("最终值为:"+sum);
-        }catch (Exception e){
+            user.sendMessage("最终值为:" + sum);
+        } catch (Exception e) {
             user.sendError("发生错误力！请不要大力撅机器人(悲).");
-            user.sendWarning("被撅的时候发生了以下了问题(惨兮兮):"+e);
+            user.sendWarning("被撅的时候发生了以下了问题(惨兮兮):" + e);
         }
     }
 }

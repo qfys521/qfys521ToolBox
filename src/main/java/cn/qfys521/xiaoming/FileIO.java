@@ -5,13 +5,13 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.io.File;
 
-public class FileIO extends SimpleInteractors<qfys521UtilPlugin> {
+public class FileIO extends SimpleInteractors<qfys521ToolBoxPlugin> {
     @Filter("FileInformation {path}")
-    @Required("qfys521Util.admin.File.Information")
+    @Required("qfys521ToolBox.admin.File.Information")
     public void FileInformation(XiaoMingUser user, @FilterParameter("path") String path) {
         try {
             File FileInformation = new File(path);
@@ -39,7 +39,7 @@ public class FileIO extends SimpleInteractors<qfys521UtilPlugin> {
     }
 
     @Filter("Reader {path}")
-    @Required("qfys521Util.admin.File.Reader")
+    @Required("qfys521ToolBox.admin.File.Reader")
     public void FileReader(XiaoMingUser user, @FilterParameter("path") String path) {
         try {
             File FileReader = new File(path);

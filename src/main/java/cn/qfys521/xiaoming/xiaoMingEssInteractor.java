@@ -6,7 +6,7 @@ import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.plugin.Plugin;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class xiaoMingEssInteractor extends SimpleInteractors<qfys521UtilPlugin> {
+public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
     @Filter("say {rn:say}")
     @Required("core.say")
@@ -46,7 +46,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521UtilPlugin> 
     }
 
     @Filter("快速关闭小明")
-    @Required("qfys521Util.admin.quickstop")
+    @Required("qfys521ToolBox.admin.quickstop")
     public void stop(XiaoMingUser user) {
         xiaoMingBot.getFileSaver().save();
         user.sendMessage("xiaoMingBot.getFileSaver().save()");

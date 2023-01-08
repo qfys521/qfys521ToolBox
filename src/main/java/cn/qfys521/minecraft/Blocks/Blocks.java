@@ -921,7 +921,7 @@ public class Blocks {
         c2e.put("流动的水", "flowing_water");
         c2e.put("岩浆", "lava");
         c2e.put("流动的岩浆", "flowing_lava");
-        c2e.put("刷块","lyrinka_block");
+        c2e.put("刷块", "lyrinka_block");
         return c2e.get(BlockChineseName);
     }
 
@@ -1832,7 +1832,7 @@ public class Blocks {
         e2c.put("flowing_water", "流动的水");
         e2c.put("lava", "岩浆");
         e2c.put("flowing_lava", "流动的岩浆");
-        e2c.put("lyrinka_block","刷块");
+        e2c.put("lyrinka_block", "刷块");
         return e2c.get(BlockName);
     }
 

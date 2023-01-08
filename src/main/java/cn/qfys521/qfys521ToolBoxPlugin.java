@@ -19,7 +19,7 @@ import cn.qfys521.xiaoming.xiaoMingEssInteractor;
  * @author Chuanwise
  * @version 1.0-SNAPSHOT
  */
-public class qfys521UtilPlugin extends JavaPlugin {
+public class qfys521ToolBoxPlugin extends JavaPlugin {
 
     /**
      * 插件具备 static final 的名为 INSTANCE 的属性时，小明会首先查看其值是否</br>
@@ -27,12 +27,12 @@ public class qfys521UtilPlugin extends JavaPlugin {
      * 则取出并作为本插件加载。如果不是，或为 null，则小明将调用默认的无参构造方法
      * 构造一个插件主类的对象。
      */
-    private static final qfys521UtilPlugin INSTANCE = new qfys521UtilPlugin();
+    private static final qfys521ToolBoxPlugin INSTANCE = new qfys521ToolBoxPlugin();
 
     /**
      * 获取插件实例
      */
-    public static qfys521UtilPlugin getInstance() {
+    public static qfys521ToolBoxPlugin getInstance() {
         return INSTANCE;
     }
 

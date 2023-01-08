@@ -5,14 +5,14 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.util.Arrays;
 import java.util.UUID;
 
-public class encryptionInteractor extends SimpleInteractors<qfys521UtilPlugin> {
+public class encryptionInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
-    static final String perm = "qfys521Util.";//权限
+    static final String perm = "qfys521ToolBox.";//权限
 
     /**
      *

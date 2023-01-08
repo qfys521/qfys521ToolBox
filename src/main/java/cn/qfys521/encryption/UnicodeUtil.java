@@ -5,16 +5,16 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UnicodeUtil extends SimpleInteractors<qfys521UtilPlugin> {
+public class UnicodeUtil extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
 
     @Filter("UnicodeEncode {r:sourceData}")
-    @Required("qfys521Util.encryption.Unicode.Encode")
+    @Required("qfys521ToolBox.encryption.Unicode.Encode")
     public static void Encode(
             XiaoMingUser BotSender,
             @FilterParameter("sourceData") String sourceData
@@ -25,7 +25,7 @@ public class UnicodeUtil extends SimpleInteractors<qfys521UtilPlugin> {
     }
 
     @Filter("UnicodeDecode {r:unicodeEncode}")
-    @Required("qfys521Util.encryption.Unicode.Decode")
+    @Required("qfys521ToolBox.encryption.Unicode.Decode")
     public static void Decode(
             XiaoMingUser BotSender,
             @FilterParameter("unicodeEncode") String unicodeEncode

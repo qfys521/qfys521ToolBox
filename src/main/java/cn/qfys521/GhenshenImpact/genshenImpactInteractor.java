@@ -5,11 +5,11 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 
-public class genshenImpactInteractor extends SimpleInteractors<qfys521UtilPlugin> {
-    final String perm = "qfys521Util";
+public class genshenImpactInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
+    final String perm = "qfys521ToolBox";
 
     /**
      * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"当前树脂数量(from:{@link genshenImpactInteractor})"

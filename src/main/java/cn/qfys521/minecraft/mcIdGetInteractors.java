@@ -5,11 +5,11 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521UtilPlugin;
+import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.util.List;
 
-public class mcIdGetInteractors extends SimpleInteractors<qfys521UtilPlugin> {
+public class mcIdGetInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> {
     @Filter("(getID|id获取|获取id|IDget) {rn:Name}")
     @Required("mclib.getidPeremission")
     public void main(XiaoMingUser user, @FilterParameter("Name") String Name) {
