@@ -18,7 +18,7 @@ public class getURLData {
 
         String line;
         StringBuilder sb = new StringBuilder();
-        while ((line = br.readLine()) != null){
+        while ((line = br.readLine()) != null) {
             sb.append(line);
         }
         br.close();
@@ -27,7 +27,7 @@ public class getURLData {
         return sb.toString();
     }
 
-    public String PostUrlData(String Url,String PostData) throws IOException {
+    public String PostUrlData(String Url, String PostData) throws IOException {
         URL url = new URL(Url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -48,7 +48,7 @@ public class getURLData {
 
         String line;
         StringBuilder sb = new StringBuilder();
-        if((line = br.readLine()) != null){
+        if ((line = br.readLine()) != null) {
             sb.append(line);
         }
         br.close();
