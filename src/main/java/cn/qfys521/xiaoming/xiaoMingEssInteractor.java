@@ -136,15 +136,12 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         JSONObject json = JSONObject.parseObject(request);
         String code = json.getString("code");
         StringBuilder sb = new StringBuilder();
-        if(code != "0"){
-            user.sendError(json.getString("msg"));
-        }else{
-            JSONArray results = json.getJSONArray("data");
-            for (int i = 0; i < results.size(); i++) {
-                String text = results.getJSONObject(i).getString("text");
-                sb.append("\n").append(text);
-            }
+        JSONArray results = json.getJSONArray("data");
+        for (int i = 0; i < results.size(); i++) {
+            String text = results.getJSONObject(i).getString("text");
+            sb.append("\n").append(text);
         }
+
     }
 
     @Filter("翻译 {内容}")
@@ -196,7 +193,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     @Filter("抽卡 来{次数}发")
     public void chouka(XiaoMingUser user,@FilterParameter("次数")int cishu) throws IOException {
-        if(cishu<=20&&cishu>0){
+        if(cishu<=30 && cishu>0){
             getURLData get = new getURLData();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num="+cishu);
             JSONObject j = JSONObject.parseObject(request);
@@ -224,7 +221,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                         .append(r4All)
                         // 5星
                         .append("\n")
-                        .append("5星总数为")
+                        .append("5星总数为: ")
                         .append(r5All);
                 // 开始解析抽卡内容
                 StringBuilder clist = new StringBuilder();//抽卡list
@@ -232,15 +229,19 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                 for(int i=0;i< jsonArray.size();i++){
                     String name = jsonArray.getJSONObject(i).getString("huo");
                     String type = jsonArray.getJSONObject(i).getString("type");
+                    if(Objects.equals(type, "r3")){
+                        type = "3星";
+                    }else if(Objects.equals(type, "r4")){
+                        type = "4星";
+                    }else {
+                        type = "5星";
+                    }
                     clist
-                            // 名称: 芭芭拉
                             .append("\n")
-                            .append("名称: ")
                             .append(name)
-                            // 稀有度： 4星
-                            .append("\n")
-                            .append("稀有度： ")
-                            .append(type);
+                            .append("(")
+                            .append(type)
+                            .append(")");
 
                 }
                 All.append(clist);
