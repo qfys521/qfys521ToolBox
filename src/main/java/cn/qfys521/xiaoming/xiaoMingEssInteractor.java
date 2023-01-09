@@ -128,4 +128,129 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             user.sendMessage("今天为:" + day + "\n" + "历史上的今天:" + sb);
         }
     }
+
+    @Filter("AI提问 {问题}")
+    public void aiQuestion(XiaoMingUser user,@FilterParameter("问题")String Question) throws IOException {
+        getURLData get = new getURLData();
+        String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+Question);
+        JSONObject json = JSONObject.parseObject(request);
+        String code = json.getString("code");
+        StringBuilder sb = new StringBuilder();
+        if(code != "0"){
+            user.sendError(json.getString("msg"));
+        }else{
+            JSONArray results = json.getJSONArray("data");
+            for (int i = 0; i < results.size(); i++) {
+                String text = results.getJSONObject(i).getString("text");
+                sb.append("\n").append(text);
+            }
+        }
+    }
+
+    @Filter("翻译 {内容}")
+    public void translation(XiaoMingUser user,@FilterParameter("内容")String text) throws IOException {
+        getURLData get = new getURLData();
+        String request = get.getUrlData("http://yichen.api.z7zz.cn/api/fanyi.php?msg="+text+"&hh=,");
+        String[] requests = request.split(",");
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 1;i<requests.length;i++){
+            stringBuilder
+                    .append("\n")
+                    .append(requests[i]);
+        }
+        user.sendMessage(stringBuilder.toString());
+    }
+    @Filter("天气 {地区}")
+    public void weather(XiaoMingUser user,@FilterParameter("地区")String diqu) throws IOException {
+        getURLData get = new getURLData();
+        String request = get.getUrlData("http://yichen.api.z7zz.cn/api/qqtq.php?msg="+diqu+"&hh=,");
+        String[] requests = request.split(",");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : requests) {
+            stringBuilder
+                    .append("\n")
+                    .append(s);
+        }
+        user.sendMessage(stringBuilder.toString());
+    }
+
+    @Filter("安慰语句|求安慰")
+    public void anwei(XiaoMingUser user) throws IOException {
+        getURLData get = new getURLData();
+        String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Comforting.php?");
+        user.sendMessage(request);
+    }
+    @Filter("短网址 {rn:url}")
+    public void duanwangzhi(XiaoMingUser user,@FilterParameter("url")String url) throws IOException {
+        getURLData get = new getURLData();
+        String request = get.getUrlData("http://yichen.api.z7zz.cn/api/dwz.php?url="+url);
+        JSONObject jsonObject = JSONObject.parseObject(request);
+        String code = jsonObject.getString("code");
+        if(Objects.equals(code, "1000")){
+            JSONObject jsonObject1 = JSONObject.parseObject(jsonObject.getString("data"));
+            user.sendMessage("您的短网址为: "+jsonObject1.getString("url"));
+        }else {
+            user.sendError("您的网址有误。");
+        }
+    }
+
+    @Filter("抽卡 来{次数}发")
+    public void chouka(XiaoMingUser user,@FilterParameter("次数")int cishu) throws IOException {
+        if(cishu<=20&&cishu>0){
+            getURLData get = new getURLData();
+            String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num="+cishu);
+            JSONObject j = JSONObject.parseObject(request);
+            StringBuilder All = new  StringBuilder();//最后 XiaoMingUser user 发送出来的
+            if(!Objects.equals(j.getString("code"), "200")){
+                user.sendError(j.getString("error"));
+            }else {
+                String tmptotal = j.getString("total");
+                // 解析抽卡3、4、5星角色的次数
+                JSONObject total = JSONObject.parseObject(tmptotal);
+                String r3All = total.getString("r3");
+                String r4All = total.getString("r4");
+                String r5All = total.getString("r5");
+                All     //抽卡次数
+                        .append("\n")
+                        .append("您的总抽卡次数为： ")
+                        .append(cishu)
+                        // 3星
+                        .append("\n")
+                        .append("3星总数为: ")
+                        .append(r3All)
+                        // 4星
+                        .append("\n")
+                        .append("四星总数为： ")
+                        .append(r4All)
+                        // 5星
+                        .append("\n")
+                        .append("5星总数为")
+                        .append(r5All);
+                // 开始解析抽卡内容
+                StringBuilder clist = new StringBuilder();//抽卡list
+                JSONArray jsonArray = j.getJSONArray("list");
+                for(int i=0;i< jsonArray.size();i++){
+                    String name = jsonArray.getJSONObject(i).getString("huo");
+                    String type = jsonArray.getJSONObject(i).getString("type");
+                    clist
+                            // 名称: 芭芭拉
+                            .append("\n")
+                            .append("名称: ")
+                            .append(name)
+                            // 稀有度： 4星
+                            .append("\n")
+                            .append("稀有度： ")
+                            .append(type);
+
+                }
+                All.append(clist);
+                user.sendMessage(All.toString());
+            }
+        }else {
+            user.sendError("抽不了，怎么想都抽不了吧！");
+        }
+
+    }
+
+
 }
