@@ -8,11 +8,9 @@ import cn.chuanwise.xiaoming.plugin.Plugin;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.qfys521.HttpUtil.getURLData;
 import cn.qfys521.qfys521ToolBoxPlugin;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -115,8 +113,8 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         String arr = json.getString("result").replaceAll("\\[","").replaceAll("]","");
         String[] result = arr.split(",");
         StringBuilder sb = new StringBuilder();
-        for (int i = 0;i<result.length;i++) {
-            JSONObject jsonObject = JSONObject.parseObject(result[i]);
+        for (String s : result) {
+            JSONObject jsonObject = JSONObject.parseObject(s);
             String date = jsonObject.getString("date");
             String title = jsonObject.getString("title");
             sb
