@@ -30,7 +30,7 @@ public class jrrpInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
                 user.sendMessage("本插件开发者绝对不会做出任何的干预行为。");
             }
         }else{
-            user.sendMessage("您的今日人品为: "+code)
+            user.sendMessage("您的今日人品为: "+code);
         }
 
     }
