@@ -121,9 +121,9 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             String day = json.getString("day");
             JSONArray results = json.getJSONArray("result");
             for (int i = 0; i < results.size(); i++) {
-                String data = results.getJSONObject(i).getString("data");
+                String date = results.getJSONObject(i).getString("date");
                 String title = results.getJSONObject(i).getString("title");
-                sb.append("\n").append(data).append(" : ").append(title);
+                sb.append("\n").append(date).append(" : ").append(title);
             }
             user.sendMessage("今天为:" + day + "\n" + "历史上的今天:" + sb);
         }
