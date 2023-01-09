@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'cn.qfys521'
-version '23w02b-build-SNAPSHOT'
+version '4.0-SNAPSHOT'
 
 repositories {
     mavenCentral()

@@ -1,20 +1,64 @@
 package cn.qfys521.HttpUtil;
 
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 public class getURLData {
-    public String getURLDara(String Url) throws IOException {
+    public String getUrlData(String url) throws IOException {
+        URL Url = new URL(url);
+        URLConnection conn = Url.openConnection();
+
+        InputStream is = conn.getInputStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+
+        String line;
+        StringBuilder sb = new StringBuilder();
+        while ((line = br.readLine()) != null){
+            sb.append(line);
+        }
+        br.close();
+        isr.close();
+        is.close();
+        return sb.toString();
+    }
+
+    public String PostUrlData(String Url,String PostData) throws IOException {
         URL url = new URL(Url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+        connection.setRequestMethod("POST");
+
+        OutputStream os = connection.getOutputStream();
+        OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+        BufferedWriter bw = new BufferedWriter(osw);
+
+        bw.write(PostData);
+        bw.flush();
+
         InputStream is = connection.getInputStream();
-        String Request = java.lang.String.valueOf(new InputStreamReader(is, StandardCharsets.UTF_8));
-        return Request;
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+
+        String line;
+        StringBuilder sb = new StringBuilder();
+        if((line = br.readLine()) != null){
+            sb.append(line);
+        }
+        br.close();
+        isr.close();
+        is.close();
+        bw.close();
+        osw.close();
+        os.close();
+        return sb.toString();
     }
 }
+
+
