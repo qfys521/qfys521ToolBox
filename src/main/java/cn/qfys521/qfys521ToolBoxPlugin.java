@@ -2,15 +2,15 @@ package cn.qfys521;
 
 
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
-import cn.qfys521.GhenshenImpact.genshenImpactInteractor;
-import cn.qfys521.compute.computeInteractors;
-import cn.qfys521.encryption.MD5Util;
-import cn.qfys521.encryption.UnicodeUtil;
-import cn.qfys521.encryption.encryptionInteractor;
-import cn.qfys521.minecraft.mcIdGetInteractors;
-import cn.qfys521.xiaoming.FileIO;
-import cn.qfys521.xiaoming.jrrpInteractor;
-import cn.qfys521.xiaoming.xiaoMingEssInteractor;
+import cn.qfys521.Interactors.FilesInteractor;
+import cn.qfys521.Interactors.genshenImpactInteractor;
+import cn.qfys521.Interactors.computeInteractors;
+import cn.qfys521.Utils.encryption.MD5Util;
+import cn.qfys521.Utils.encryption.UnicodeUtil;
+import cn.qfys521.Interactors.encryptionInteractor;
+import cn.qfys521.Interactors.jrrpInteractor;
+import cn.qfys521.Interactors.mcIdGetInteractors;
+import cn.qfys521.Interactors.xiaoMingEssInteractor;
 
 /**
  * 插件主类
@@ -48,7 +48,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new mcIdGetInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new UnicodeUtil(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new MD5Util(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new FileIO(), this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new FilesInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
 
