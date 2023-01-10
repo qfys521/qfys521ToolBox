@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
+@SuppressWarnings("all")
 public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
     @Filter("say {rn:say}")
@@ -129,10 +129,12 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         }
     }
 
-    @Filter("提问 {r:问题}")
+    @Filter("提问 {问题}")
+    @Required("qfys521ToolBox.ai")
     public void aiQuestion(XiaoMingUser user,@FilterParameter("问题")String Question) throws IOException {
+        String qs2 = Question.replaceAll(" \\s","");
         getURLData get = new getURLData();
-        String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+Question.replaceAll("\\[\\p{Z}\\s]",""));
+        String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+qs2);
         JSONObject json = JSONObject.parseObject(request);
         StringBuilder sb = new StringBuilder();
         JSONArray results = json.getJSONArray("data");
@@ -191,6 +193,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     }
 
     @Filter("抽卡 来{次数}发")
+    @Required("qfys521ToolBox.gs")
     public void chouka(XiaoMingUser user,@FilterParameter("次数")int cishu) throws IOException {
         if(cishu<=10 && cishu>0){
             getURLData get = new getURLData();
@@ -252,9 +255,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     }
 
+    /*
     @Filter("getPlayerUUID {playerName}")
     public void getPlayerUUID(XiaoMingUser user,@FilterParameter("playerName")String PlayerName) throws IOException {
-        String offline = String.valueOf(UUID.fromString("OfflinePlayer:"+PlayerName));
+
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.mojang.com/users/profiles/minecraft/"+PlayerName);
         JSONObject json = JSONObject.parseObject(request);
@@ -265,4 +269,6 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             user.sendMessage("离线uuid为: "+offline.replaceAll("-","")+"\n"+"正版uuid为:"+online);
         }
     }
+
+     */
 }
