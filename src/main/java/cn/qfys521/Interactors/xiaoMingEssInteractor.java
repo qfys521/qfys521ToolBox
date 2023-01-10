@@ -129,10 +129,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         }
     }
 
-    @Filter("提问 {问题}")
+    @Filter("提问 {r:问题}")
     @Required("qfys521ToolBox.ai")
     public void aiQuestion(XiaoMingUser user,@FilterParameter("问题")String Question) throws IOException {
-        String qs2 = Question.replaceAll("\u0020","%20");
+        String qs2 = Question.replaceAll("\\s","%20");
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+qs2);
         JSONObject json = JSONObject.parseObject(request);
