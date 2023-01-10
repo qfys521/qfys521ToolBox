@@ -27,7 +27,7 @@ public class mcIdGetInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> 
             for (int i = 0; i < 11; i++) {
                 matcher.find(Name).forEach(t -> {
                     String sb = t.getKey() +
-                            " （差异性为: -> " +
+                            " （" +
                             t.getValue() + "）\n";
                     stringBuilder.append(sb);
                 });

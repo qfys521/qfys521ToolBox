@@ -129,19 +129,18 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         }
     }
 
-    @Filter("AI提问 {问题}")
+    @Filter("提问 {r:问题}")
     public void aiQuestion(XiaoMingUser user,@FilterParameter("问题")String Question) throws IOException {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+Question);
         JSONObject json = JSONObject.parseObject(request);
-        String code = json.getString("code");
         StringBuilder sb = new StringBuilder();
         JSONArray results = json.getJSONArray("data");
         for (int i = 0; i < results.size(); i++) {
             String text = results.getJSONObject(i).getString("text");
             sb.append("\n").append(text);
         }
-
+        user.sendMessage(String.valueOf(sb));
     }
 
     @Filter("翻译 {内容}")
@@ -193,7 +192,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     @Filter("抽卡 来{次数}发")
     public void chouka(XiaoMingUser user,@FilterParameter("次数")int cishu) throws IOException {
-        if(cishu<=30 && cishu>0){
+        if(cishu<=10 && cishu>0){
             getURLData get = new getURLData();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num="+cishu);
             JSONObject j = JSONObject.parseObject(request);
