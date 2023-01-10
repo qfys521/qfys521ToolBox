@@ -2,15 +2,9 @@ package cn.qfys521;
 
 
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
-import cn.qfys521.Interactors.FilesInteractor;
-import cn.qfys521.Interactors.genshenImpactInteractor;
-import cn.qfys521.Interactors.computeInteractors;
+import cn.qfys521.Interactors.*;
 import cn.qfys521.Utils.encryption.MD5Util;
 import cn.qfys521.Utils.encryption.UnicodeUtil;
-import cn.qfys521.Interactors.encryptionInteractor;
-import cn.qfys521.Interactors.jrrpInteractor;
-import cn.qfys521.Interactors.mcIdGetInteractors;
-import cn.qfys521.Interactors.xiaoMingEssInteractor;
 
 /**
  * 插件主类

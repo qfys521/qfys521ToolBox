@@ -57,7 +57,7 @@ public class encryptionInteractor extends SimpleInteractors<qfys521ToolBoxPlugin
     @Filter("base64-encode {文本内容}")
     @Required(perm + "base64.lock")
     public void base64lock(XiaoMingUser user,
-                    @FilterParameter("文本内容") String text) {
+                           @FilterParameter("文本内容") String text) {
         try {
             user.sendMessage("转换后:" + Base64Util.encode(text));
         } catch (Exception e) {
