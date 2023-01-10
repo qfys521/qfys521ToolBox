@@ -132,7 +132,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     @Filter("提问 {r:问题}")
     public void aiQuestion(XiaoMingUser user,@FilterParameter("问题")String Question) throws IOException {
         getURLData get = new getURLData();
-        String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+Question);
+        String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+Question.replaceAll("\\[\\p{Z}\\s]",""));
         JSONObject json = JSONObject.parseObject(request);
         StringBuilder sb = new StringBuilder();
         JSONArray results = json.getJSONArray("data");
@@ -252,5 +252,17 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     }
 
-
+    @Filter("getPlayerUUID {playerName}")
+    public void getPlayerUUID(XiaoMingUser user,@FilterParameter("playerName")String PlayerName) throws IOException {
+        String offline = String.valueOf(UUID.fromString("OfflinePlayer:"+PlayerName));
+        getURLData get = new getURLData();
+        String request = get.getUrlData("https://api.mojang.com/users/profiles/minecraft/"+PlayerName);
+        JSONObject json = JSONObject.parseObject(request);
+        String online = json.getString("name");
+        if(online == null){
+            user.sendMessage("离线uuid为: "+offline.replaceAll("-","")+"\n"+"啊这。。。。该玩家没有正版呢(悲)");
+        }else{
+            user.sendMessage("离线uuid为: "+offline.replaceAll("-","")+"\n"+"正版uuid为:"+online);
+        }
+    }
 }
