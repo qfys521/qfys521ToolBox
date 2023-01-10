@@ -132,7 +132,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     @Filter("提问 {问题}")
     @Required("qfys521ToolBox.ai")
     public void aiQuestion(XiaoMingUser user,@FilterParameter("问题")String Question) throws IOException {
-        String qs2 = Question.replaceAll(" \\s","");
+        String qs2 = Question.replaceAll("\u0020","%20");
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents="+qs2);
         JSONObject json = JSONObject.parseObject(request);
@@ -270,8 +270,8 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             user.sendMessage("离线uuid为: "+offline.replaceAll("-","")+"\n"+"正版uuid为:"+online);
         }
     }
-
      */
+
     @Filter("星座运势 {星座}")
     public void xz(XiaoMingUser user,@FilterParameter("星座")String text) throws IOException {
         getURLData get = new getURLData();
