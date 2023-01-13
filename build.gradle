@@ -36,5 +36,5 @@ shadowJar {
 
     minimize()
 
-    archiveName 'all-'+project.name+'-'+getArchiveVersion().get()+'-'+getArchiveExtension().get()
+    archiveName 'all-'+project.name+'-'+getArchiveVersion().get()+'.'+getArchiveExtension().get()
 }

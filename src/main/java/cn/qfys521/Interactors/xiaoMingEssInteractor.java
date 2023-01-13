@@ -28,8 +28,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     @Filter("say {rn:say}")
     @Required("core.say")
-    public void say(XiaoMingUser user,
-                    @FilterParameter("say") String say) {
+    public void say(XiaoMingUser user, @FilterParameter("say") String say) {
         user.sendMessage(say);
     }
 
