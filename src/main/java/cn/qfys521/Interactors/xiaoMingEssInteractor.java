@@ -7,12 +7,15 @@ import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.plugin.Plugin;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 
+import cn.qfys521.Utils.ForwardMessageUtil.ForwardMessageBuilder;
 import cn.qfys521.Utils.encryption.URLCodeUtil;
 import cn.qfys521.Utils.HttpUtil.getURLData;
 import cn.qfys521.qfys521ToolBoxPlugin;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import net.mamoe.mirai.message.data.ForwardMessage;
+
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -202,11 +205,14 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     @Filter("抽卡 来{次数}发")
     @Required("qfys521ToolBox.gs")
     public void chouka(XiaoMingUser user, @FilterParameter("次数") int cishu) throws IOException {
-        if (cishu <= 10 && cishu > 0) {
+        if (cishu <= 50 && cishu > 0) {
             getURLData get = new getURLData();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num=" + cishu);
             JSONObject j = JSONObject.parseObject(request);
+            /*
             StringBuilder All = new StringBuilder();//最后 XiaoMingUser user 发送出来的
+            */
+            ForwardMessageBuilder forwardMessageBuilder = new ForwardMessageBuilder();
             if (!Objects.equals(j.getString("code"), "200")) {
                 user.sendError(j.getString("error"));
             } else {
@@ -216,24 +222,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                 String r3All = total.getString("r3");
                 String r4All = total.getString("r4");
                 String r5All = total.getString("r5");
-                All     //抽卡次数
-                        .append("\n")
-                        .append("您的总抽卡次数为： ")
-                        .append(cishu)
-                        // 3星
-                        .append("\n")
-                        .append("3星总数为: ")
-                        .append(r3All)
-                        // 4星
-                        .append("\n")
-                        .append("四星总数为： ")
-                        .append(r4All)
-                        // 5星
-                        .append("\n")
-                        .append("5星总数为: ")
-                        .append(r5All);
-                // 开始解析抽卡内容
-                StringBuilder clist = new StringBuilder();//抽卡list
+                forwardMessageBuilder
+                        .add(user.getCode(), (int) System.currentTimeMillis() / 1000, user.getName(), "您的总抽卡次数为： " + cishu)
+                        .add(user.getCode(), (int) System.currentTimeMillis() / 1000, user.getName(), "3星总数为: " + r3All)
+                        .add(user.getCode(), (int) System.currentTimeMillis() / 1000, user.getName(), "四星总数为： " + r4All)
+                        .add(user.getCode(), (int) System.currentTimeMillis() / 1000, user.getName(), "5星总数为: " + r5All);
                 JSONArray jsonArray = j.getJSONArray("list");
                 for (int i = 0; i < jsonArray.size(); i++) {
                     String name = jsonArray.getJSONObject(i).getString("huo");
@@ -245,22 +238,21 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                     } else {
                         type = "5星";
                     }
-                    clist
-                            .append("\n")
-                            .append(name)
-                            .append("(")
-                            .append(type)
-                            .append(")");
+                    forwardMessageBuilder
+                            .add(user.getCode(),
+                                    (int) System.currentTimeMillis() / 1000,
+                                    user.getName(),
+                                    name + "(" + type + ")");
 
                 }
-                All.append(clist);
-                user.sendMessage(All.toString());
             }
-        } else {
+            ForwardMessage forwardMessage = forwardMessageBuilder.build();
+            user.sendMessage(forwardMessage);
+        }else{
             user.sendError("抽不了，怎么想都抽不了吧！");
         }
-
     }
+
 
 
     @Filter("getPlayerUUID {playerName}")
@@ -295,12 +287,13 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     }
 
     @Filter("URLCodeEncode {r:text}")
-    public void urlEncode(XiaoMingUser user,@FilterParameter("text")String text){
+    public void urlEncode(XiaoMingUser user, @FilterParameter("text") String text) {
         URLCodeUtil urlCodeUtil = new URLCodeUtil();
         user.sendMessage(urlCodeUtil.URLCodeEncode(text));
     }
+
     @Filter("URLCoedDecode {r:text}")
-    public void urlDecode(XiaoMingUser user,@FilterParameter("text")String text){
+    public void urlDecode(XiaoMingUser user, @FilterParameter("text") String text) {
         URLCodeUtil urlCodeUtil = new URLCodeUtil();
         user.sendMessage(urlCodeUtil.URLCodeDecode(text));
     }
