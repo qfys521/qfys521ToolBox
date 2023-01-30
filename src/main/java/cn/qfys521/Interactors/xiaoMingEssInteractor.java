@@ -256,14 +256,19 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         UUID object = UUID.nameUUIDFromBytes(tmp.getBytes());
         String offline = object.toString();
         getURLData get = new getURLData();
-        String request = get.getUrlData("https://api.mojang.com/users/profiles/minecraft/" + PlayerName);
-        JSONObject json = JSONObject.parseObject(request);
-        String online = json.getString("id");
-        if (online == null) {
+        try {
+
+
+            String request = get.getUrlData("https://api.mojang.com/users/profiles/minecraft/" + PlayerName);
+            JSONObject json = JSONObject.parseObject(request);
+            String online = json.getString("id");
+                //user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "啊这。。。。该玩家没有正版呢(悲)");
+                user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "正版uuid为:" + online);
+        }catch (Exception e) {
             user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "啊这。。。。该玩家没有正版呢(悲)");
-        } else {
-            user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "正版uuid为:" + online);
+
         }
+
     }
 
 
