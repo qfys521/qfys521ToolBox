@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cn.qfys521'
-version '4.0.11-SNAPSHOT'
+version '4.0.12-SNAPSHOT'
 
 repositories {
     // mavenCentral
@@ -20,10 +20,11 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 shadowJar {
+    minimize()
     exclude "META-INF/*.SF"
     exclude "META-INF/*.DSA"
     exclude "META-INF/*.RSA"
     exclude "META-INF/LICENSE"
-    minimize()
     archiveName 'all-' + project.name + '-' + getArchiveVersion().get() + '.' + getArchiveExtension().get()
+    minimize()
 }

@@ -201,7 +201,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     @Filter("抽卡 来{次数}发")
     @Required("qfys521ToolBox.gs")
     public void chouka(XiaoMingUser user, @FilterParameter("次数") int cishu) throws IOException {
-        if (cishu <= 50 && cishu > 0) {
+        if (cishu <= 60 && cishu > 0) {
             getURLData get = new getURLData();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num=" + cishu);
             JSONObject j = JSONObject.parseObject(request);
@@ -258,7 +258,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.mojang.com/users/profiles/minecraft/" + PlayerName);
         JSONObject json = JSONObject.parseObject(request);
-        String online = json.getString("name");
+        String online = json.getString("id");
         if (online == null) {
             user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "啊这。。。。该玩家没有正版呢(悲)");
         } else {
