@@ -26,5 +26,4 @@ shadowJar {
     exclude "META-INF/*.RSA"
     exclude "META-INF/LICENSE"
     archiveName 'all-' + project.name + '-' + getArchiveVersion().get() + '.' + getArchiveExtension().get()
-    minimize()
 }
