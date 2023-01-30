@@ -10,22 +10,23 @@ import net.mamoe.mirai.message.data.SingleMessage;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class ForwardMessageBuilder {
 
     List<ForwardMessage.Node> nodeList = new ArrayList<>(100);
 
-    public ForwardMessageBuilder add(long senderCode, long time, String senderName, String message) {
+    public ForwardMessageBuilder add(long senderCode, int time, String senderName, String message) {
         add(senderCode, time, senderName, MiraiCode.deserializeMiraiCode(message));
         return this;
     }
 
-    public ForwardMessageBuilder add(long senderCode, long time, String senderName, MessageChain message) {
-        ForwardMessage.Node node = new ForwardMessage.Node(senderCode, (int) (time / 1000), senderName, message);
+    public ForwardMessageBuilder add(long senderCode, int time, String senderName, MessageChain message) {
+        ForwardMessage.Node node = new ForwardMessage.Node(senderCode, time, senderName, message);
         nodeList.add(node);
         return this;
     }
 
-    public ForwardMessageBuilder add(long senderCode, long time, String senderName, SingleMessage... messages) {
+    public ForwardMessageBuilder add(long senderCode, int time, String senderName, SingleMessage... messages) {
         add(senderCode, time, senderName, MiraiCodes.asMessageChain(messages));
         return this;
     }
