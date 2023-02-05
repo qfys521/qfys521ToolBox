@@ -8,23 +8,21 @@ import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.qfys521.qfys521ToolBoxPlugin;
 
 
-public class genshenImpactInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
+public class genshinImpactInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     final String perm = "qfys521ToolBox";
 
     /**
-     * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"当前树脂数量(from:{@link genshenImpactInteractor})"
+     * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"当前树脂数量(from:{@link genshinImpactInteractor})"
      * 随后，进行判断树脂数量
      */
     @Filter("树脂计算工具 {当前树脂数量}")
     @Required(perm)
-    void 树脂计算工具(XiaoMingUser user,
-                      @FilterParameter("当前树脂数量") int 当前树脂数量) {
+    public void 树脂计算工具(XiaoMingUser user,
+                             @FilterParameter("当前树脂数量") int 当前树脂数量) {
         if (当前树脂数量 < 0) {
             user.sendError("抱歉，树脂数量不能小于0!");
-            return;
         } else if (当前树脂数量 > 160) {
             user.sendError("抱歉，树脂数量不能大于160!");
-            return;
         } else {
             int 总数量 = 160;
             int 差值 = 总数量 - 当前树脂数量;

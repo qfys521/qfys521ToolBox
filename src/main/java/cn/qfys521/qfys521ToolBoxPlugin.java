@@ -26,7 +26,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
     /**
      * 获取插件实例
      */
-    public static qfys521ToolBoxPlugin getInstance() {
+    public static qfys521ToolBoxPlugin getINSTANCE() {
         return INSTANCE;
     }
 
@@ -36,7 +36,8 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
      */
     @Override
     public void onEnable() {
-        getXiaoMingBot().getInteractorManager().registerInteractors(new genshenImpactInteractor(), this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new pluginsInteractors(), this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new genshinImpactInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new computeInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new encryptionInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new mcIdGetInteractors(), this);

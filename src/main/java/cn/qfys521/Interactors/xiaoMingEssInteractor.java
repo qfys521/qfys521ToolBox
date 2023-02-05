@@ -4,7 +4,6 @@ import cn.chuanwise.xiaoming.annotation.Filter;
 import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
-import cn.chuanwise.xiaoming.plugin.Plugin;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.qfys521.Utils.ForwardMessageUtil.ForwardMessageBuilder;
 import cn.qfys521.Utils.HttpUtil.getURLData;
@@ -18,7 +17,9 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+import java.util.UUID;
 
 @SuppressWarnings("all")
 public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
@@ -29,19 +30,6 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(say);
     }
 
-    @Filter("pl")
-    @Required("core.plugins")
-    public void pl(XiaoMingUser user) {
-        Map<String, Plugin> plugins = xiaoMingBot.getPluginManager().getPlugins();
-        Set<String> set = plugins.keySet();
-        Iterator<String> i = set.iterator();
-        StringBuilder sb = new StringBuilder();
-        while (i.hasNext()) {
-            sb.append("\n");
-            sb.append(i.next());
-        }
-        user.sendMessage("======Plugins======" + sb);
-    }
 
     @Filter("(time|时间)")
     public void ntimes(XiaoMingUser user) {
@@ -262,9 +250,8 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             String request = get.getUrlData("https://api.mojang.com/users/profiles/minecraft/" + PlayerName);
             JSONObject json = JSONObject.parseObject(request);
             String online = json.getString("id");
-                //user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "啊这。。。。该玩家没有正版呢(悲)");
-                user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "正版uuid为:" + online);
-        }catch (Exception e) {
+            user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "正版uuid为:" + online);
+        } catch (Exception e) {
             user.sendMessage("PlayerName:" + PlayerName + "\n" + "离线uuid为: " + offline.replaceAll("-", "") + "\n" + "啊这。。。。该玩家没有正版呢(悲)");
 
         }
@@ -297,4 +284,15 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         URLCodeUtil urlCodeUtil = new URLCodeUtil();
         user.sendMessage(urlCodeUtil.URLCodeDecode(text));
     }
+    /*
+    @Filter("开发者公告 {rn:公告}")
+    @Required("core.admin.title")
+    public void title(GroupXiaoMingUser user, @FilterParameter("公告")String title){
+        Set<GroupInformation> groups = xiaoMingBot.getGroupInformationManager().getGroups();
+        for (GroupInformation group : groups) {
+            user.sendGroupMessage().
+        }
+    }
+
+     */
 }
