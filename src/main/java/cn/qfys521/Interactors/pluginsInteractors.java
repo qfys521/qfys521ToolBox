@@ -14,8 +14,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author qfys521
+ */
 @SuppressWarnings("all")
 public class pluginsInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> {
+    /**
+     * 获取插件列表
+     *
+     * @param user XiaoMingUser
+     */
     @Filter("pl|plugins|插件|插件列表")
     @Required("core.plugins")
     public void pl(XiaoMingUser user) {
@@ -30,6 +38,13 @@ public class pluginsInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> 
         user.sendMessage("======Plugins======" + sb);
     }
 
+    /**
+     * 获取插件信息
+     *
+     * @param user XiaoMingUser
+     * @param plugin plugin
+     * @param Name Name
+     */
     @Filter("(plugins|pl) info {r:PluginName}")
     @Required("core.info")
     public void PluginInfo(XiaoMingUser user, @FilterParameter("PluginName") PluginHandler plugin, @FilterParameter("PluginName") Plugin Name) {
@@ -55,6 +70,12 @@ public class pluginsInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> 
         }
     }
 
+    /**
+     * 重载插件
+     *
+     * @param user XiaoMingUser
+     * @param Name Name
+     */
     @Filter("(plugins|pl) reload {r:PluginName}")
     @Required("plugman.reload")
     public void reload(XiaoMingUser user, @FilterParameter("PluginName") Plugin Name) {

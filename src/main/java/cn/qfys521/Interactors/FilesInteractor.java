@@ -9,7 +9,18 @@ import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.io.File;
 
+/**
+ * @author qfys521
+ */
+
 public class FilesInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
+
+    /**
+     * 获取文件信息
+     *
+     * @param user XiaoMingUser 
+     * @param path path
+     */
     @Filter("FileInformation {path}")
     @Required("qfys521ToolBox.admin.File.Information")
     public void FileInformation(XiaoMingUser user, @FilterParameter("path") String path) {
@@ -38,6 +49,12 @@ public class FilesInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
         }
     }
 
+    /**
+     * 读取文件
+     *
+     * @param user XiaoMingUser
+     * @param path path
+     */
     @Filter("Reader {path}")
     @Required("qfys521ToolBox.admin.File.Reader")
     public void FileReader(XiaoMingUser user, @FilterParameter("path") String path) {

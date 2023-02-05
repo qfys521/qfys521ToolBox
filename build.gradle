@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cn.qfys521'
-version '4.0.13-SNAPSHOT'
+version '4.0.14-SNAPSHOT'
 
 repositories {
     // mavenCentral
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly files("libs/xiaoming-host-terminal-4.8.5.jar","libs/commons-text-1.9.jar",  "libs/kotlin-jvm-blocking-bridge-jvm-1.10.6-1530.2.jar", "libs/kotlin-reflect-1.5.30.jar", "libs/kotlin-stdlib-1.5.30.jar", "libs/kotlin-stdlib-common-1.5.20.jar", "libs/kotlin-stdlib-jdk7-1.5.30.jar", "libs/kotlin-stdlib-jdk8-1.5.30.jar", "libs/kotlinx-coroutines-core-jvm-1.5.1.jar", "libs/kotlinx-coroutines-jdk8-1.5.1.jar", "libs/kotlinx-io-0.1.16.jar", "libs/kotlinx-io-jvm-0.1.16.jar", "libs/kotlinx-serialization-core-jvm-1.2.2.jar", "libs/kotlinx-serialization-json-jvm-1.2.2.jar", "libs/kotlinx-serialization-protobuf-jvm-1.2.2.jar", "libs/ktor-client-core-jvm-1.5.4.jar", "libs/ktor-client-okhttp-1.5.4.jar", "libs/ktor-http-cio-jvm-1.5.4.jar", "libs/ktor-http-jvm-1.5.4.jar", "libs/ktor-io-jvm-1.5.4.jar", "libs/ktor-network-jvm-1.5.4.jar", "libs/ktor-utils-jvm-1.5.4.jar", "libs/log4j-1.2.17.jar", "libs/log4j-api-2.15.0.jar", "libs/lombok-1.18.24.jar", "libs/mirai-core-api-jvm-2.9.1.jar", "libs/mirai-core-jvm-2.9.1.jar", "libs/mirai-core-utils-jvm-2.9.1.jar", "libs/slf4j-api-2.0.0-alpha5.jar", "libs/spring-boot-jarmode-layertools-2.4.5.jar", "libs/WiseToolkit-4.0.1-SNAPSHOT.jar", "libs/XiaoMingBot-4.8.3.jar")
+    compileOnly files("libs/xiaoming-host-terminal-4.8.5.jar", "libs/commons-text-1.9.jar", "libs/kotlin-jvm-blocking-bridge-jvm-1.10.6-1530.2.jar", "libs/kotlin-reflect-1.5.30.jar", "libs/kotlin-stdlib-1.5.30.jar", "libs/kotlin-stdlib-common-1.5.20.jar", "libs/kotlin-stdlib-jdk7-1.5.30.jar", "libs/kotlin-stdlib-jdk8-1.5.30.jar", "libs/kotlinx-coroutines-core-jvm-1.5.1.jar", "libs/kotlinx-coroutines-jdk8-1.5.1.jar", "libs/kotlinx-io-0.1.16.jar", "libs/kotlinx-io-jvm-0.1.16.jar", "libs/kotlinx-serialization-core-jvm-1.2.2.jar", "libs/kotlinx-serialization-json-jvm-1.2.2.jar", "libs/kotlinx-serialization-protobuf-jvm-1.2.2.jar", "libs/ktor-client-core-jvm-1.5.4.jar", "libs/ktor-client-okhttp-1.5.4.jar", "libs/ktor-http-cio-jvm-1.5.4.jar", "libs/ktor-http-jvm-1.5.4.jar", "libs/ktor-io-jvm-1.5.4.jar", "libs/ktor-network-jvm-1.5.4.jar", "libs/ktor-utils-jvm-1.5.4.jar", "libs/log4j-1.2.17.jar", "libs/log4j-api-2.15.0.jar", "libs/lombok-1.18.24.jar", "libs/mirai-core-api-jvm-2.9.1.jar", "libs/mirai-core-jvm-2.9.1.jar", "libs/mirai-core-utils-jvm-2.9.1.jar", "libs/slf4j-api-2.0.0-alpha5.jar", "libs/spring-boot-jarmode-layertools-2.4.5.jar", "libs/WiseToolkit-4.0.1-SNAPSHOT.jar", "libs/XiaoMingBot-4.8.3.jar")
     implementation files("libs/fastjson-1.2.9.jar")
 }
 sourceCompatibility = JavaVersion.VERSION_11

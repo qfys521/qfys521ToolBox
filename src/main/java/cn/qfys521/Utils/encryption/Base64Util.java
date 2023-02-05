@@ -4,8 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- * @version 1.0
- * @date 2023/1/8
+ * @author qfys521
  */
 public class Base64Util {
 
@@ -18,7 +17,7 @@ public class Base64Util {
     /**
      * 给字符串加密
      *
-     * @param text
+     * @param text t
      * @return encoder.encodeToString(text.getBytes ( StandardCharsets.UTF_8)
      */
     public static String encode(String text) {
@@ -29,7 +28,7 @@ public class Base64Util {
     /**
      * 将加密后的字符串进行解密
      *
-     * @param encodedText
+     * @param encodedText t
      * @return new String(decoder.decode(encodedText), StandardCharsets.UTF_8)
      */
     public static String decode(String encodedText) {

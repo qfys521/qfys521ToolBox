@@ -8,11 +8,19 @@ import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.util.Objects;
 
+/**
+ * @author qfys521
+ */
 public class jrrpInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
 
-    private static final String KEY = "L.THERE ARE NO KEYS HERE";
+    private static final String KEY = "";
 
+    /**
+     * 通过{@link cn.qfys521.Utils.jrrpUtil.LuckAlgorithm} 进行加密并计算
+     *
+     * @param user XiaoMingUser
+     */
     @Filter("jrrp|今日人品")
     public static void main(XiaoMingUser user) {
         int code = LuckAlgorithm.get(user.getCode(), KEY);

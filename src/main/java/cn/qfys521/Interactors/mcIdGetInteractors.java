@@ -12,7 +12,18 @@ import cn.qfys521.qfys521ToolBoxPlugin;
 
 import java.util.List;
 
+/**
+ * @author qfys521
+ */
+@SuppressWarnings("all")
 public class mcIdGetInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> {
+
+    /**
+     * 通过{@link cn.qfys521.Utils.minecraft}进行相关操作，详情请自行跳转{@link cn.qfys521.Utils.minecraft}
+     *
+     * @param user XiaoMingUser
+     * @param Name Name
+     */
     @Filter("(getID|id获取|获取id|IDget) {rn:Name}")
     @Required("mclib.getidPeremission")
     public void main(XiaoMingUser user, @FilterParameter("Name") String Name) {

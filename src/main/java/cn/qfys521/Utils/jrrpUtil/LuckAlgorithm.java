@@ -8,19 +8,40 @@ import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author lyrinka
+ */
 @SuppressWarnings("all")
 public class LuckAlgorithm {
 
     // 获取当前数据
+
+    /**
+     * @param identifier identifier
+     * @param key key
+     * @return int
+     */
     public static int get(long identifier, String key) {
         return get(null, identifier, key);
     }
 
+    /**
+     * @param date date
+     * @param identifier identifier
+     * @param key key
+     * @return int
+     */
     // 获取特定日期的数据
     public static int get(Date date, long identifier, String key) {
         return get(getDay(date), identifier, key);
     }
 
+    /**
+     * @param day day
+     * @param identifier identifier
+     * @param key key
+     * @return int
+     */
     // 获取特定天数的数据(用于测试随机分布)
     public static int get(int day, long identifier, String key) {
         int code = rfc4226(getSeed(day, identifier), key, 2);
@@ -28,6 +49,10 @@ public class LuckAlgorithm {
         return code + 1;
     }
 
+    /**
+     * @param date date
+     * @return int
+     */
     // 获取自公元1年初以来经过的天数
     public static int getDay(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -38,11 +63,21 @@ public class LuckAlgorithm {
         return day;
     }
 
+    /**
+     * @param day day
+     * @param identifier identifier
+     * @return long
+     */
     // 二进制拼接日期与QQ号，生成64bit种子，范围约为公元45900年和12位QQ号
     public static long getSeed(int day, long identifier) {
         return (identifier & 0x000000FFFFFFFFFFL) | (((long) day) << 40);
     }
 
+    /**
+     * @param seed seed
+     * @param key key
+     * @return int
+     */
     // 核心算法符合标准HOTP算法(RFC4226)，方便快速迁移到具有该库的其他平台
     // 密钥格式为base64
     // 详见：https://www.rfc-editor.org/rfc/rfc4226
@@ -50,10 +85,22 @@ public class LuckAlgorithm {
         return rfc4226(seed, key, 6);
     }
 
+    /**
+     * @param seed seed
+     * @param key key
+     * @param digits digits
+     * @return int
+     */
     public static int rfc4226(long seed, String key, int digits) {
         return rfc4226(seed, Base64.getDecoder().decode(key), digits);
     }
 
+    /**
+     * @param seed seed
+     * @param key key
+     * @param digits digits
+     * @return int
+     */
     public static int rfc4226(long seed, byte[] key, int digits) {
         byte[] seed_bytes = new byte[]{
                 (byte) (seed >> 56),

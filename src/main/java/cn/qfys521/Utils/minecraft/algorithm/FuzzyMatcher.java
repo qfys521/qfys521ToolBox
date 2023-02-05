@@ -3,12 +3,19 @@ package cn.qfys521.Utils.minecraft.algorithm;
 import java.util.*;
 import java.util.Map.Entry;
 
+/**
+ * @author qfys521
+ */
 public class FuzzyMatcher {
 
     private final String[] list;
     private float threshold;
     private int limit;
 
+    /**
+     *
+     * @param list list
+     */
     public FuzzyMatcher(String[] list) {
         int len = list.length;
         this.list = Arrays.copyOf(list, len);
@@ -16,26 +23,49 @@ public class FuzzyMatcher {
         this.limit = -1;
     }
 
+    /**
+     *
+     * @param threshold threshold
+     * @return this
+     */
     public FuzzyMatcher setThreshold(float threshold) {
         this.threshold = threshold;
         return this;
     }
 
+    /**
+     *
+     * @return this
+     */
     public FuzzyMatcher clearThreshold() {
         this.threshold = Float.NaN;
         return this;
     }
 
+    /**
+     *
+     * @param limit limit
+     * @return this
+     */
     public FuzzyMatcher setLimit(int limit) {
         this.limit = limit;
         return this;
     }
 
+    /**
+     *
+     * @return this
+     */
     public FuzzyMatcher clearLimit() {
         this.limit = -1;
         return this;
     }
 
+    /**
+     *
+     * @param str str
+     * @return matches
+     */
     public List<Entry<String, Float>> find(String str) {
         int len = list.length;
         List<Entry<String, Float>> matches = new ArrayList<Entry<String, Float>>(len);

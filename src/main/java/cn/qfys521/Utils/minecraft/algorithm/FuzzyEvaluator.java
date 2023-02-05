@@ -1,7 +1,14 @@
 package cn.qfys521.Utils.minecraft.algorithm;
 
+/**
+ * @author qfys521
+ */
 public final class FuzzyEvaluator extends AbstractFuzzyEvaluator {
-
+    /**
+     *
+     * @param str1 str1
+     * @param str2 str2
+     */
     public FuzzyEvaluator(String str1, String str2) {
         super(str1, str2);
     }

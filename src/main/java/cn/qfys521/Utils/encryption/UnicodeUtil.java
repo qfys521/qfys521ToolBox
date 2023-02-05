@@ -1,47 +1,19 @@
 package cn.qfys521.Utils.encryption;
 
-import cn.chuanwise.xiaoming.annotation.Filter;
-import cn.chuanwise.xiaoming.annotation.FilterParameter;
-import cn.chuanwise.xiaoming.annotation.Required;
-import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
-import cn.chuanwise.xiaoming.user.XiaoMingUser;
-import cn.qfys521.qfys521ToolBoxPlugin;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UnicodeUtil extends SimpleInteractors<qfys521ToolBoxPlugin> {
-
-
-    @Filter("UnicodeEncode {r:sourceData}")
-    @Required("qfys521ToolBox.encryption.Unicode.Encode")
-    public static void Encode(
-            XiaoMingUser BotSender,
-            @FilterParameter("sourceData") String sourceData
-    ) {
-        String unicodeEncode = unicodeEncode(sourceData);
-        String unicodeEncode2 = unicodeEncode.replaceAll("u", "\\u");
-        BotSender.sendMessage("Encode:" + unicodeEncode2);
-    }
-
-    @Filter("UnicodeDecode {r:unicodeEncode}")
-    @Required("qfys521ToolBox.encryption.Unicode.Decode")
-    public static void Decode(
-            XiaoMingUser BotSender,
-            @FilterParameter("unicodeEncode") String unicodeEncode
-    ) {
-        String unicodeDecode = unicodeDecode(unicodeEncode);
-        BotSender.sendMessage("Decode:" + unicodeDecode);
-    }
+/**
+ * @author qfys521
+ */
+public class UnicodeUtil {
 
 
     /**
-     * @param string
-     * @return
-     * @Title: unicodeEncode
-     * @Description: unicode编码
+     * @param string string
+     * @return unicodeBytes
      */
-    public static String unicodeEncode(String string) {
+    public String unicodeEncode(String string) {
         char[] utfBytes = string.toCharArray();
         String unicodeBytes = "";
         for (int i = 0; i < utfBytes.length; i++) {
@@ -55,12 +27,10 @@ public class UnicodeUtil extends SimpleInteractors<qfys521ToolBoxPlugin> {
     }
 
     /**
-     * @param string
-     * @return
-     * @Title: unicodeDecode
-     * @Description: unicode解码
+     * @param string string
+     * @return string
      */
-    public static String unicodeDecode(String string) {
+    public String unicodeDecode(String string) {
         Pattern pattern = Pattern.compile("(\\\\u(\\p{XDigit}{4}))");
         Matcher matcher = pattern.matcher(string);
         char ch;

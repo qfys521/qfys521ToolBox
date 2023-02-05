@@ -7,34 +7,39 @@ import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.qfys521.qfys521ToolBoxPlugin;
 
-
+/**
+ * @author qfys521
+ */
 public class genshinImpactInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     final String perm = "qfys521ToolBox";
 
     /**
-     * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"当前树脂数量(from:{@link genshinImpactInteractor})"
+     * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"nowCount{@link genshinImpactInteractor}" 
      * 随后，进行判断树脂数量
+     *
+     * @param user XiaoMingUser
+     * @param nowCount nowCount
      */
-    @Filter("树脂计算工具 {当前树脂数量}")
+    @Filter("树脂计算工具 {nowCount}")
     @Required(perm)
     public void 树脂计算工具(XiaoMingUser user,
-                             @FilterParameter("当前树脂数量") int 当前树脂数量) {
-        if (当前树脂数量 < 0) {
+                             @FilterParameter("nowCount") int nowCount) {
+        if (nowCount < 0) {
             user.sendError("抱歉，树脂数量不能小于0!");
-        } else if (当前树脂数量 > 160) {
+        } else if (nowCount > 160) {
             user.sendError("抱歉，树脂数量不能大于160!");
         } else {
-            int 总数量 = 160;
-            int 差值 = 总数量 - 当前树脂数量;
-            int 恢复所需时间 = 差值 * 8 * 60;
-            int 时, 分, 秒;
-            秒 = (恢复所需时间 % 60) % 60;
-            分 = (恢复所需时间 % 3600) / 60;
-            时 = 恢复所需时间 / 3600;
-            user.sendMessage("您的树脂将于" + 时 + "时" + 分 + "分" + 秒 + "秒" + "后恢复满." + "\n以为您创建提醒。");
+            int allCount = 160;
+            int tmp = allCount - nowCount;
+            int needTime = tmp * 8 * 60;
+            int h, m, s;
+            s = (needTime % 60) % 60;
+            m = (needTime % 3600) / 60;
+            h = needTime / 3600;
+            user.sendMessage("您的树脂将于" + h + "时" + m + "分" + s + "秒" + "后恢复满." + "\n以为您创建提醒。");
             new Thread(() -> {
                 try {
-                    Thread.sleep(恢复所需时间 * 1000);
+                    Thread.sleep(needTime * 1000);
                 } catch (InterruptedException e) {
                     user.sendError("Error:" + "\n" + e);
                 }

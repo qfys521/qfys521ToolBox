@@ -2,8 +2,13 @@ package cn.qfys521.Utils.minecraft.algorithm;
 
 import java.lang.reflect.Field;
 
+/**
+ * @author qfys521
+ */
 public final class PrepopulatedList {
-
+    /**
+     * block id
+     */
     public static String[] BLOCK_ID = {
             "acacia_button",
             "acacia_door",
@@ -900,6 +905,9 @@ public final class PrepopulatedList {
             "zombie_head",
             "zombie_wall_head",
     };
+    /**
+     * block name
+     */
     public static String[] BLOCK_NAME = {
             "金合欢木按钮",
             "金合欢木门",
@@ -1796,18 +1804,27 @@ public final class PrepopulatedList {
             "僵尸的头",
             "墙上的僵尸的头",
     };
+    /**
+     * 流体
+     */
     public static String[] FLUID_ID = {
             "water",
             "flowing_water",
             "lava",
             "flowing_lava",
     };
+    /**
+     * 流体
+     */
     public static String[] FLUID_NAME = {
             "水",
             "流动的水",
             "熔岩",
             "流动的熔岩",
     };
+    /**
+     * item
+     */
     public static String[] ITEM_ID = {
             "iron_sword",
             "iron_shovel",
@@ -2116,6 +2133,9 @@ public final class PrepopulatedList {
             "suspicious_stew",
             "echo_shard",
     };
+    /**
+     * item
+     */
     public static String[] ITEM_NAME = {
             "铁剑",
             "铁锹",
@@ -2424,6 +2444,9 @@ public final class PrepopulatedList {
             "迷之炖菜",
             "回响碎片",
     };
+    /**
+     * 实体id
+     */
     public static String[] ENTITY_ID = {
             "allay",
             "blaze",
@@ -2536,6 +2559,9 @@ public final class PrepopulatedList {
             "item",
             "experience_orb",
     };
+    /**
+     * 实体名称
+     */
     public static String[] ENTITY_NAME = {
             "悦灵",
             "烈焰人",
@@ -2648,6 +2674,9 @@ public final class PrepopulatedList {
             "物品",
             "经验球",
     };
+    /**
+     * 效果id
+     */
     public static String[] EFFECT_ID = {
             "speed",
             "slowness",
@@ -2682,6 +2711,9 @@ public final class PrepopulatedList {
             "bad_omen",
             "hero_of_the_village",
     };
+    /**
+     * 效果名称
+     */
     public static String[] EFFECT_NAME = {
             "速度",
             "缓慢",
@@ -2716,6 +2748,9 @@ public final class PrepopulatedList {
             "不祥之兆",
             "村庄英雄",
     };
+    /**
+     * 附魔id
+     */
     public static String[] ENCHANTMENT_ID = {
             "sweeping",
             "depth_strider",
@@ -2738,6 +2773,9 @@ public final class PrepopulatedList {
             "sharpness",
 
     };
+    /**
+     * 附魔名称
+     */
     public static String[] ENCHANTMENT_NAME = {
             "横扫之刃",
             "水下速掘",
@@ -2778,6 +2816,9 @@ public final class PrepopulatedList {
             "锋利",
             "灵魂疾行",
     };
+    /**
+     * 群系
+     */
     public static String[] BIOME_ID = {
             "the_void",
             "plains",
@@ -2843,6 +2884,9 @@ public final class PrepopulatedList {
             "small_end_islands",
             "end_barrens",
     };
+    /**
+     * 群系
+     */
     public static String[] BIOME_NAME = {
             "虚空",
             "平原",
@@ -2908,16 +2952,25 @@ public final class PrepopulatedList {
             "末地小型岛屿",
             "末地荒地",
     };
+    /**
+     * dimension id
+     */
     public static String[] DIMENSION_ID = {
             "overworld",
             "the_nether",
             "the_end",
     };
+    /**
+     * dimension name
+     */
     public static String[] DIMENSION_NAME = {
             "主世界",
             "下界",
             "末地",
     };
+    /**
+     * 结构id
+     */
     public static String[] STRUCTURE_ID = {
             "jungle_pyramid",
             "village",
@@ -2938,6 +2991,9 @@ public final class PrepopulatedList {
             "ocean_ruin",
             "mineshaft",
     };
+    /**
+     * 结构name
+     */
     public static String[] STRUCTURE_NAME = {
             "丛林神庙",
             "村庄",
@@ -2959,6 +3015,10 @@ public final class PrepopulatedList {
             "废弃矿井",
     };
 
+    /**
+     *
+     * @return aggregatedList
+     */
     public static String[] getEverything() {
         Field[] fields = PrepopulatedList.class.getFields();
         for (int i = 0; i < fields.length; i++) {

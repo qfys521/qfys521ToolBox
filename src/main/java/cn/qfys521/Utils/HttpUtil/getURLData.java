@@ -7,13 +7,21 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * @author qfys521
+ */
 public class getURLData {
+    /**
+     * @param url url
+     * @return sb.toString()
+     * @throws IOException IOE
+     */
     public String getUrlData(String url) throws IOException {
         URL Url = new URL(url);
         URLConnection conn = Url.openConnection();
 
         InputStream is = conn.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is,StandardCharsets.UTF_8);
+        InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(isr);
 
         String line;
@@ -27,6 +35,12 @@ public class getURLData {
         return sb.toString();
     }
 
+    /**
+     * @param Url Url
+     * @param PostData PostData
+     * @return sb.toString()
+     * @throws IOException IOE
+     */
     public String PostUrlData(String Url, String PostData) throws IOException {
         URL url = new URL(Url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

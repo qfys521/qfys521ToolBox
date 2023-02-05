@@ -3,8 +3,6 @@ package cn.qfys521;
 
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
 import cn.qfys521.Interactors.*;
-import cn.qfys521.Utils.encryption.MD5Util;
-import cn.qfys521.Utils.encryption.UnicodeUtil;
 
 /**
  * 插件主类
@@ -16,8 +14,8 @@ import cn.qfys521.Utils.encryption.UnicodeUtil;
 public class qfys521ToolBoxPlugin extends JavaPlugin {
 
     /**
-     * 插件具备 static final 的名为 INSTANCE 的属性时，小明会首先查看其值是否</br>
-     * 实现了 {@link cn.chuanwise.xiaoming.plugin.Plugin} 接口，如果实现</br>
+     * 插件具备 static final 的名为 INSTANCE 的属性时，小明会首先查看其值是否
+     * 实现了 {@link cn.chuanwise.xiaoming.plugin.Plugin} 接口，如果实现
      * 则取出并作为本插件加载。如果不是，或为 null，则小明将调用默认的无参构造方法
      * 构造一个插件主类的对象。
      */
@@ -25,6 +23,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
 
     /**
      * 获取插件实例
+     * @return INSTANCE
      */
     public static qfys521ToolBoxPlugin getINSTANCE() {
         return INSTANCE;
@@ -41,8 +40,8 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new computeInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new encryptionInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new mcIdGetInteractors(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new UnicodeUtil(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new MD5Util(), this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new UnicodeInteractor(), this);
+        getXiaoMingBot().getInteractorManager().registerInteractors(new MD5Interactor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new FilesInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);

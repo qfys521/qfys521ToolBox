@@ -21,16 +21,28 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * @author qfys521
+ */
 @SuppressWarnings("all")
 public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
-
+    /**
+     * say 等效于 echo
+     *
+     * @param user XiaoMingUser
+     * @param say say
+     */
     @Filter("say {rn:say}")
     @Required("core.say")
     public void say(XiaoMingUser user, @FilterParameter("say") String say) {
         user.sendMessage(say);
     }
 
-
+    /**
+     * 当前时间
+     *
+     * @param user XiaoMingUser
+     */
     @Filter("(time|时间)")
     public void ntimes(XiaoMingUser user) {
         Date date = new Date();
@@ -38,6 +50,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage("now is: " + sdf.format(date));
     }
 
+    /**
+     * 原版的等待过于缓慢，板寸文件后进行抛弃所有任务强制退出
+     *
+     * @param user XiaoMingUser
+     */
     @Filter("快速关闭小明")
     @Required("qfys521ToolBox.admin.quickstop")
     public void stop(XiaoMingUser user) {
@@ -46,6 +63,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         System.exit(0);
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @throws IOException IOE
+     */
     @Filter("一言")
     public void yiyan(XiaoMingUser user) throws IOException {
         getURLData get = new getURLData();
@@ -53,6 +74,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(request);
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @throws IOException IOE
+     */
     @Filter("来句舔狗|舔我")
     public void tiangou(XiaoMingUser user) throws IOException {
         getURLData get = new getURLData();
@@ -60,6 +85,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(request);
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @throws IOException IOE
+     */
     @Filter("来句毒鸡汤|毒鸡汤")
     public void du(XiaoMingUser user) throws IOException {
         getURLData get = new getURLData();
@@ -67,6 +96,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(request);
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @throws IOException IOE
+     */
     @Filter("来句社会经典语录|社会经典语录")
     public void yvlu(XiaoMingUser user) throws IOException {
         getURLData get = new getURLData();
@@ -74,6 +107,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(request);
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param url url
+     * @throws IOException IOE
+     */
     @Filter("ICP备案查询 {url}")
     public void icp(XiaoMingUser user, @FilterParameter("url") String url) throws IOException {
         getURLData get = new getURLData();
@@ -100,6 +138,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         }
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @throws IOException IOE
+     */
     @Filter("历史上的今天")
     public void history(XiaoMingUser user) throws IOException {
         getURLData get = new getURLData();
@@ -121,6 +163,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         }
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param Question Question
+     * @throws IOException IOE
+     */
     @Filter("提问 {r:问题}")
     @Required("qfys521ToolBox.ai")
     public void aiQuestion(XiaoMingUser user, @FilterParameter("问题") String Question) throws IOException {
@@ -137,6 +184,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(String.valueOf(sb));
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param text text
+     * @throws IOException IOE
+     */
     @Filter("翻译 {内容}")
     public void translation(XiaoMingUser user, @FilterParameter("内容") String text) throws IOException {
         getURLData get = new getURLData();
@@ -151,6 +203,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(stringBuilder.toString());
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param diqu diqu
+     * @throws IOException IOE
+     */
     @Filter("天气 {地区}")
     public void weather(XiaoMingUser user, @FilterParameter("地区") String diqu) throws IOException {
         getURLData get = new getURLData();
@@ -165,6 +222,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(stringBuilder.toString());
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @throws IOException IOE
+     */
     @Filter("安慰语句|求安慰")
     public void anwei(XiaoMingUser user) throws IOException {
         getURLData get = new getURLData();
@@ -172,6 +233,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(request);
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param url url
+     * @throws IOException IOE
+     */
     @Filter("短网址 {rn:url}")
     public void duanwangzhi(XiaoMingUser user, @FilterParameter("url") String url) throws IOException {
         getURLData get = new getURLData();
@@ -186,6 +252,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         }
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param cishu cishu
+     * @throws IOException IOE
+     */
     @Filter("抽卡 来{次数}发")
     @Required("qfys521ToolBox.gs")
     public void chouka(XiaoMingUser user, @FilterParameter("次数") int cishu) throws IOException {
@@ -193,9 +264,6 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             getURLData get = new getURLData();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num=" + cishu);
             JSONObject j = JSONObject.parseObject(request);
-            /*
-            StringBuilder All = new StringBuilder();//最后 XiaoMingUser user 发送出来的
-            */
             ForwardMessageBuilder forwardMessageBuilder = new ForwardMessageBuilder();
             if (!Objects.equals(j.getString("code"), "200")) {
                 user.sendError(j.getString("error"));
@@ -206,11 +274,12 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                 String r3All = total.getString("r3");
                 String r4All = total.getString("r4");
                 String r5All = total.getString("r5");
+                int t = (int) (new Date().getTime() / 1000);
                 forwardMessageBuilder
-                        .add(user.getCode(), (int) new Date().getTime() / 1000, user.getName(), "您的总抽卡次数为： " + cishu)
-                        .add(user.getCode(), (int) new Date().getTime() / 1000, user.getName(), "3星总数为: " + r3All)
-                        .add(user.getCode(), (int) new Date().getTime() / 1000, user.getName(), "四星总数为： " + r4All)
-                        .add(user.getCode(), (int) new Date().getTime() / 1000, user.getName(), "5星总数为: " + r5All);
+                        .add(user.getCode(), t, "您的总抽卡次数为： " + cishu)
+                        .add(user.getCode(), t, "3星总数为: " + r3All)
+                        .add(user.getCode(), t, "四星总数为： " + r4All)
+                        .add(user.getCode(), t, "5星总数为: " + r5All);
                 JSONArray jsonArray = j.getJSONArray("list");
                 for (int i = 0; i < jsonArray.size(); i++) {
                     String name = jsonArray.getJSONObject(i).getString("huo");
@@ -231,13 +300,21 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                 }
             }
             ForwardMessage forwardMessage = forwardMessageBuilder.build();
-            user.sendMessage(forwardMessage);
+            user.sendMessage("已尝试发送消息.");
+            new Thread(() ->
+            {
+                user.sendMessage(forwardMessage);
+            });
         } else {
             user.sendError("抽不了，怎么想都抽不了吧！");
         }
     }
 
-
+    /**
+     * @param user XiaoMingUser
+     * @param PlayerName PlayerName
+     * @throws IOException IOE
+     */
     @Filter("getPlayerUUID {playerName}")
     public void getPlayerUUID(XiaoMingUser user, @FilterParameter("playerName") String PlayerName) throws IOException {
         String tmp = "OfflinePlayer:" + PlayerName;
@@ -258,7 +335,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     }
 
-
+    /**
+     * @param user XiaoMingUser
+     * @param text text
+     * @throws IOException IOE
+     */
     @Filter("星座运势 {星座}")
     public void xz(XiaoMingUser user, @FilterParameter("星座") String text) throws IOException {
         getURLData get = new getURLData();
@@ -273,26 +354,25 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(stringBuilder.toString());
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param text text
+     */
     @Filter("URLCodeEncode {r:text}")
     public void urlEncode(XiaoMingUser user, @FilterParameter("text") String text) {
         URLCodeUtil urlCodeUtil = new URLCodeUtil();
         user.sendMessage(urlCodeUtil.URLCodeEncode(text));
     }
 
+    /**
+     * @param user XiaoMingUser
+     * @param text text
+     */
     @Filter("URLCoedDecode {r:text}")
     public void urlDecode(XiaoMingUser user, @FilterParameter("text") String text) {
         URLCodeUtil urlCodeUtil = new URLCodeUtil();
         user.sendMessage(urlCodeUtil.URLCodeDecode(text));
     }
-    /*
-    @Filter("开发者公告 {rn:公告}")
-    @Required("core.admin.title")
-    public void title(GroupXiaoMingUser user, @FilterParameter("公告")String title){
-        Set<GroupInformation> groups = xiaoMingBot.getGroupInformationManager().getGroups();
-        for (GroupInformation group : groups) {
-            user.sendGroupMessage().
-        }
-    }
 
-     */
+
 }

@@ -12,9 +12,16 @@ import cn.qfys521.Utils.minecraft.Entitys.Items;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author qfys521
+ */
 public class all {
 
-
+    /**
+     *
+     * @param N n
+     * @return List
+     */
     public List<String> getInformation(String N) {
         Biomes biomes = new Biomes();
         Blocks blocks = new Blocks();

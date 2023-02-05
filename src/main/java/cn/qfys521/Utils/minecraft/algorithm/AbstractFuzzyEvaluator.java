@@ -1,13 +1,31 @@
 package cn.qfys521.Utils.minecraft.algorithm;
 
+/**
+ * @author qfys521
+ */
 public abstract class AbstractFuzzyEvaluator {
-
+    /**
+     * 最大长度
+     */
     public static final int MAX_LENGTH = 255;
-
+    /**
+     * 临时
+     */
     private final String str1;
+    /**
+     * 临时
+     */
     private final String str2;
+    /**
+     * 字典
+     */
     private final float[][] distances;
 
+    /**
+     *
+     * @param str1 str
+     * @param str2 str
+     */
     public AbstractFuzzyEvaluator(String str1, String str2) {
         this.str1 = str1;
         this.str2 = str2;
@@ -54,19 +72,50 @@ public abstract class AbstractFuzzyEvaluator {
         }
     }
 
-
+    /**
+     *
+     * @return this.distances[this.distances.length - 1][this.distances[0].length - 1]
+     */
     public float getDistance() {
         return this.distances[this.distances.length - 1][this.distances[0].length - 1];
     }
 
+    /**
+     *
+     * @param src src
+     * @param dest dest
+     * @return boolean
+     */
     protected abstract boolean isCharEqual(char src, char dest);
 
+    /**
+     *
+     * @param ch ch
+     * @return float
+     */
     protected abstract float getInsertionDistance(char ch);
 
+    /**
+     *
+     * @param ch ch
+     * @return float
+     */
     protected abstract float getDeletionDistance(char ch);
 
+    /**
+     *
+     * @param src src
+     * @param dest dest
+     * @return float
+     */
     protected abstract float getReplacementDistance(char src, char dest);
 
+    /**
+     *
+     * @param head head
+     * @param tail tail
+     * @return float
+     */
     protected abstract float getTranspositionDistance(char head, char tail);
 	
 	/*
