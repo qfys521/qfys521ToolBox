@@ -13,7 +13,7 @@ public class getURLData {
         URLConnection conn = Url.openConnection();
 
         InputStream is = conn.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
+        InputStreamReader isr = new InputStreamReader(is,StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(isr);
 
         String line;

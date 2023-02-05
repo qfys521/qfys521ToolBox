@@ -1,0 +1,16 @@
+# 默认忽略的文件
+/shelf/
+/workspace.xml
+/.gradle/
+/.idea/
+/build/
+/libs/commons-text-1.9.jarS
+/libs/fastjson-2.0.4.jar
+/libs/log4j-1.2.17.jar
+/libs/log4j-api-2.15.0.jar
+/libs/lombok-1.18.24.jar
+/libs/slf4j-api-2.0.0-alpha5.jar
+/libs/spring-boot-jarmode-layertools-2.4.5.jar
+/scr/test/
+src/main/java/cn/qfys521/xiaoming/jrrpInteractor.java
+/libs/xiaoming-host-terminal-4.8.5.jar
