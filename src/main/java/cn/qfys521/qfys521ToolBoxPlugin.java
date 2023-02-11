@@ -1,6 +1,7 @@
 package cn.qfys521;
 
 
+import cn.chuanwise.xiaoming.interactor.interactors.ReceptionistInteractors;
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
 import cn.qfys521.Interactors.*;
 
@@ -35,6 +36,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
      */
     @Override
     public void onEnable() {
+        getXiaoMingBot().getInteractorManager().registerInteractors(new ReflectionTest(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new pluginsInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new genshinImpactInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new computeInteractors(), this);

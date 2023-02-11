@@ -170,18 +170,23 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("提问 {r:问题}")
     @Required("qfys521ToolBox.ai")
-    public void aiQuestion(XiaoMingUser user, @FilterParameter("问题") String Question) throws IOException {
+    public void aiQuestion(XiaoMingUser user, @FilterParameter("问题") String Question) {
         String qs1 = URLEncoder.encode(Question, StandardCharsets.UTF_8);
         getURLData get = new getURLData();
-        String request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents=" + qs1);
-        JSONObject json = JSONObject.parseObject(request);
-        StringBuilder sb = new StringBuilder();
-        JSONArray results = json.getJSONArray("data");
-        for (int i = 0; i < results.size(); i++) {
-            String text = results.getJSONObject(i).getString("text");
-            sb.append("\n").append(text);
+        String request = null;
+        try {
+            request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents=" + qs1);
+            JSONObject json = JSONObject.parseObject(request);
+            StringBuilder sb = new StringBuilder();
+            JSONArray results = json.getJSONArray("data");
+            for (int i = 0; i < results.size(); i++) {
+                String text = results.getJSONObject(i).getString("text");
+                sb.append("\n").append(text);
+            }
+            user.sendMessage(String.valueOf(sb));
+        } catch (IOException e) {
+            user.sendError("在过程中发生了异常: "+new RuntimeException(e));
         }
-        user.sendMessage(String.valueOf(sb));
     }
 
     /**
