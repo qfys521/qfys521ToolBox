@@ -1,9 +1,11 @@
 package cn.qfys521;
 
 
-import cn.chuanwise.xiaoming.interactor.interactors.ReceptionistInteractors;
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
+import cn.qfys521.Configs.Config;
 import cn.qfys521.Interactors.*;
+
+import java.io.File;
 
 /**
  * 插件主类
@@ -35,6 +37,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
      * 插件启动时的回调方法
      */
     @Override
+    @SuppressWarnings("all")
     public void onEnable() {
         getXiaoMingBot().getInteractorManager().registerInteractors(new ReflectionTest(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new pluginsInteractors(), this);
@@ -47,7 +50,9 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new FilesInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
-
+        getDataFolder().mkdir();
+        Config Config = xiaoMingBot.getFileLoader().loadOrSupply(Config.class, new File(getDataFolder(), "config.json"), cn.qfys521.Configs.Config::new);
+        xiaoMingBot.getFileSaver().readyToSave(Config);
     }
 
 }

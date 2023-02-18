@@ -5,6 +5,10 @@ import cn.chuanwise.xiaoming.annotation.FilterParameter;
 import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
+import cn.qfys521.Configs.Config;
+import cn.qfys521.Utils.DataUtil.DataUtil;
+import cn.qfys521.Utils.Exception.CrazyThursdayException;
+import cn.qfys521.Utils.Exception.NotThursdayException;
 import cn.qfys521.Utils.ForwardMessageUtil.ForwardMessageBuilder;
 import cn.qfys521.Utils.HttpUtil.getURLData;
 import cn.qfys521.Utils.encryption.URLCodeUtil;
@@ -13,7 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import net.mamoe.mirai.message.data.ForwardMessage;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -65,10 +69,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("一言")
-    public void yiyan(XiaoMingUser user) throws IOException {
+    public void yiyan(XiaoMingUser user) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.oick.cn/yiyan/api.php");
         user.sendMessage(request);
@@ -76,10 +80,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("来句舔狗|舔我")
-    public void tiangou(XiaoMingUser user) throws IOException {
+    public void tiangou(XiaoMingUser user) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.oick.cn/dog/api.php");
         user.sendMessage(request);
@@ -87,10 +91,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("来句毒鸡汤|毒鸡汤")
-    public void du(XiaoMingUser user) throws IOException {
+    public void du(XiaoMingUser user) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.oick.cn/dutang/api.php");
         user.sendMessage(request);
@@ -98,10 +102,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("来句社会经典语录|社会经典语录")
-    public void yvlu(XiaoMingUser user) throws IOException {
+    public void yvlu(XiaoMingUser user) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.oick.cn/yulu/api.php");
         user.sendMessage(request);
@@ -110,10 +114,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param url url
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("ICP备案查询 {url}")
-    public void icp(XiaoMingUser user, @FilterParameter("url") String url) throws IOException {
+    public void icp(XiaoMingUser user, @FilterParameter("url") String url) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.oick.cn/icp/api.php?url=" + url);
         JSONObject json = JSONObject.parseObject(request);
@@ -140,10 +144,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("历史上的今天")
-    public void history(XiaoMingUser user) throws IOException {
+    public void history(XiaoMingUser user) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("https://api.oick.cn/lishi/api.php");
         JSONObject json = JSONObject.parseObject(request);
@@ -166,7 +170,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param Question Question
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("提问 {r:问题}")
     @Required("qfys521ToolBox.ai")
@@ -184,18 +188,26 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
                 sb.append("\n").append(text);
             }
             user.sendMessage(String.valueOf(sb));
-        } catch (IOException e) {
-            user.sendError("在过程中发生了异常: "+new RuntimeException(e));
+        } catch (Exception e) {
+            var ex = e.toString();
+            if(ex.length() > 30){
+                user.sendError("在过程中发生了异常: ");
+                user.sendError(ex.substring(0,50)+"\n and more...");
+                user.sendPrivateMessage(e.toString());
+            }else {
+                user.sendError(String.valueOf(e));
+            }
+
         }
     }
 
     /**
      * @param user XiaoMingUser
      * @param text text
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("翻译 {内容}")
-    public void translation(XiaoMingUser user, @FilterParameter("内容") String text) throws IOException {
+    public void translation(XiaoMingUser user, @FilterParameter("内容") String text) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/fanyi.php?msg=" + text + "&hh=,");
         String[] requests = request.split(",");
@@ -211,10 +223,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param diqu diqu
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("天气 {地区}")
-    public void weather(XiaoMingUser user, @FilterParameter("地区") String diqu) throws IOException {
+    public void weather(XiaoMingUser user, @FilterParameter("地区") String diqu) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/qqtq.php?msg=" + diqu + "&hh=,");
         String[] requests = request.split(",");
@@ -229,10 +241,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("安慰语句|求安慰")
-    public void anwei(XiaoMingUser user) throws IOException {
+    public void anwei(XiaoMingUser user) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Comforting.php?");
         user.sendMessage(request);
@@ -241,10 +253,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param url url
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("短网址 {rn:url}")
-    public void duanwangzhi(XiaoMingUser user, @FilterParameter("url") String url) throws IOException {
+    public void duanwangzhi(XiaoMingUser user, @FilterParameter("url") String url) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/dwz.php?url=" + url);
         JSONObject jsonObject = JSONObject.parseObject(request);
@@ -260,12 +272,12 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param cishu cishu
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("抽卡 来{次数}发")
     @Required("qfys521ToolBox.gs")
-    public void chouka(XiaoMingUser user, @FilterParameter("次数") int cishu) throws IOException {
-        if (cishu <= 60 && cishu > 0) {
+    public void chouka(XiaoMingUser user, @FilterParameter("次数") int cishu) throws Exception {
+        if (cishu <= 80 && cishu > 0) {
             getURLData get = new getURLData();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num=" + cishu);
             JSONObject j = JSONObject.parseObject(request);
@@ -318,10 +330,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param PlayerName PlayerName
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("getPlayerUUID {playerName}")
-    public void getPlayerUUID(XiaoMingUser user, @FilterParameter("playerName") String PlayerName) throws IOException {
+    public void getPlayerUUID(XiaoMingUser user, @FilterParameter("playerName") String PlayerName) throws Exception {
         String tmp = "OfflinePlayer:" + PlayerName;
         UUID object = UUID.nameUUIDFromBytes(tmp.getBytes());
         String offline = object.toString();
@@ -343,10 +355,10 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     /**
      * @param user XiaoMingUser
      * @param text text
-     * @throws IOException IOE
+     * @throws Exception IOE
      */
     @Filter("星座运势 {星座}")
-    public void xz(XiaoMingUser user, @FilterParameter("星座") String text) throws IOException {
+    public void xz(XiaoMingUser user, @FilterParameter("星座") String text) throws Exception {
         getURLData get = new getURLData();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/xingzuo.php?msg=" + text + "&hh=,");
         String[] requests = request.split(",");
@@ -379,5 +391,36 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(urlCodeUtil.URLCodeDecode(text));
     }
 
+    @Filter("testException")
+    public void te(XiaoMingUser user){
+        if(new Config().isCrazyEnabled()){
+            throw new CrazyThursdayException("v我50！");
+        }else {
+            throw new NotThursdayException("今天不是星期四呢");
+        }
+    }
 
+    @Filter("(v|V|微)(ivo|IVO|我)50")
+    public void Crazy(XiaoMingUser user) {
+        DataUtil dateUtil = new DataUtil();
+        if(dateUtil.getWeekOfDate()==4){
+            throw new CrazyThursdayException("v我50！");
+        }else {
+            throw new NotThursdayException("今天不是星期四呢");
+        }
+
+    }
+    @Filter("关闭疯狂星期四异常")
+    public void Crazyfalse(XiaoMingUser user){
+        new Config().setCrazyEnabled(false);
+        xiaoMingBot.getFileSaver().save();
+        user.sendMessage("已尝试关闭");
+    }
+
+    @Filter("开启疯狂星期四异常")
+    public void Crazytrue(XiaoMingUser user){
+        new Config().setCrazyEnabled(true);
+        xiaoMingBot.getFileSaver().save();
+        user.sendMessage("已尝试开启");
+    }
 }

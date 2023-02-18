@@ -1,11 +1,15 @@
 package cn.qfys521.Utils.HttpUtil;
 
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+
+import static cn.qfys521.Utils.HttpUtil.SslUtils.trustAllHttpsCertificates;
 
 /**
  * @author qfys521
@@ -16,7 +20,14 @@ public class getURLData {
      * @return sb.toString()
      * @throws IOException IOE
      */
-    public String getUrlData(String url) throws IOException {
+    public String getUrlData(String url) throws Exception {
+            trustAllHttpsCertificates();
+        HostnameVerifier hv = new HostnameVerifier() {
+            public boolean verify(String urlHostName, SSLSession session) {
+                System.out.println("Warning: URL Host: " + urlHostName + " vs. " + session.getPeerHost());
+                return true;
+            }
+        };
         URL Url = new URL(url);
         URLConnection conn = Url.openConnection();
 

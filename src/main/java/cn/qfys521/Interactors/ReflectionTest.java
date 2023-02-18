@@ -28,7 +28,7 @@ public class ReflectionTest extends SimpleInteractors<qfys521ToolBoxPlugin> {
         Class cl = Class.forName(name);
         Class supercl = cl.getSuperclass();
         String modifiers = Modifier.toString(cl.getModifiers());
-        if (modifiers.length() > 0)
+        if (modifiers.length() > 0) 
             sb.append("class ").append(name);
         if (supercl != null && supercl != Object.class)
             sb.append("extends " + " ").append(supercl.getName());
