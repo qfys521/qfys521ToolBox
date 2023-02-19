@@ -21,7 +21,7 @@ public class getURLData {
      * @throws IOException IOE
      */
     public String getUrlData(String url) throws Exception {
-            trustAllHttpsCertificates();
+        trustAllHttpsCertificates();
         HostnameVerifier hv = new HostnameVerifier() {
             public boolean verify(String urlHostName, SSLSession session) {
                 System.out.println("Warning: URL Host: " + urlHostName + " vs. " + session.getPeerHost());
@@ -47,7 +47,7 @@ public class getURLData {
     }
 
     /**
-     * @param Url Url
+     * @param Url      Url
      * @param PostData PostData
      * @return sb.toString()
      * @throws IOException IOE

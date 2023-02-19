@@ -6,7 +6,7 @@ import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.qfys521.Configs.Config;
-import cn.qfys521.Utils.DataUtil.DataUtil;
+import cn.qfys521.Utils.DateUtil.DateUtil;
 import cn.qfys521.Utils.Exception.CrazyThursdayException;
 import cn.qfys521.Utils.Exception.NotThursdayException;
 import cn.qfys521.Utils.ForwardMessageUtil.ForwardMessageBuilder;
@@ -17,7 +17,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import net.mamoe.mirai.message.data.ForwardMessage;
 
-import java.io.File;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -34,7 +33,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      * say 等效于 echo
      *
      * @param user XiaoMingUser
-     * @param say say
+     * @param say  say
      */
     @Filter("say {rn:say}")
     @Required("core.say")
@@ -113,7 +112,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @param url url
+     * @param url  url
      * @throws Exception IOE
      */
     @Filter("ICP备案查询 {url}")
@@ -168,7 +167,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     }
 
     /**
-     * @param user XiaoMingUser
+     * @param user     XiaoMingUser
      * @param Question Question
      * @throws Exception IOE
      */
@@ -190,11 +189,11 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
             user.sendMessage(String.valueOf(sb));
         } catch (Exception e) {
             var ex = e.toString();
-            if(ex.length() > 30){
+            if (ex.length() > 30) {
                 user.sendError("在过程中发生了异常: ");
-                user.sendError(ex.substring(0,50)+"\n and more...");
+                user.sendError(ex.substring(0, 50) + "\n and more...");
                 user.sendPrivateMessage(e.toString());
-            }else {
+            } else {
                 user.sendError(String.valueOf(e));
             }
 
@@ -252,7 +251,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
 
     /**
      * @param user XiaoMingUser
-     * @param url url
+     * @param url  url
      * @throws Exception IOE
      */
     @Filter("短网址 {rn:url}")
@@ -270,7 +269,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     }
 
     /**
-     * @param user XiaoMingUser
+     * @param user  XiaoMingUser
      * @param cishu cishu
      * @throws Exception IOE
      */
@@ -328,7 +327,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     }
 
     /**
-     * @param user XiaoMingUser
+     * @param user       XiaoMingUser
      * @param PlayerName PlayerName
      * @throws Exception IOE
      */
@@ -392,33 +391,34 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     }
 
     @Filter("testException")
-    public void te(XiaoMingUser user){
-        if(new Config().isCrazyEnabled()){
+    public void te(XiaoMingUser user) {
+        if (new Config().isCrazyEnabled()) {
             throw new CrazyThursdayException("v我50！");
-        }else {
+        } else {
             throw new NotThursdayException("今天不是星期四呢");
         }
     }
 
     @Filter("(v|V|微)(ivo|IVO|我)50")
     public void Crazy(XiaoMingUser user) {
-        DataUtil dateUtil = new DataUtil();
-        if(dateUtil.getWeekOfDate()==4){
+        DateUtil dateUtil = new DateUtil();
+        if (dateUtil.getWeekOfDate() == 4) {
             throw new CrazyThursdayException("v我50！");
-        }else {
+        } else {
             throw new NotThursdayException("今天不是星期四呢");
         }
 
     }
+
     @Filter("关闭疯狂星期四异常")
-    public void Crazyfalse(XiaoMingUser user){
+    public void Crazyfalse(XiaoMingUser user) {
         new Config().setCrazyEnabled(false);
         xiaoMingBot.getFileSaver().save();
         user.sendMessage("已尝试关闭");
     }
 
     @Filter("开启疯狂星期四异常")
-    public void Crazytrue(XiaoMingUser user){
+    public void Crazytrue(XiaoMingUser user) {
         new Config().setCrazyEnabled(true);
         xiaoMingBot.getFileSaver().save();
         user.sendMessage("已尝试开启");

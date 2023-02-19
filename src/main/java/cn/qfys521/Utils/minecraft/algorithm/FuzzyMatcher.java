@@ -13,7 +13,6 @@ public class FuzzyMatcher {
     private int limit;
 
     /**
-     *
      * @param list list
      */
     public FuzzyMatcher(String[] list) {
@@ -24,7 +23,6 @@ public class FuzzyMatcher {
     }
 
     /**
-     *
      * @param threshold threshold
      * @return this
      */
@@ -34,7 +32,6 @@ public class FuzzyMatcher {
     }
 
     /**
-     *
      * @return this
      */
     public FuzzyMatcher clearThreshold() {
@@ -43,7 +40,6 @@ public class FuzzyMatcher {
     }
 
     /**
-     *
      * @param limit limit
      * @return this
      */
@@ -53,7 +49,6 @@ public class FuzzyMatcher {
     }
 
     /**
-     *
      * @return this
      */
     public FuzzyMatcher clearLimit() {
@@ -62,7 +57,6 @@ public class FuzzyMatcher {
     }
 
     /**
-     *
      * @param str str
      * @return matches
      */

@@ -1,6 +1,6 @@
 package cn.qfys521.Utils.Exception;
 
-public class NotThursdayException extends RuntimeException{
+public class NotThursdayException extends RuntimeException {
     static final long serialVersionUID = -3387516993124229948L;
 
     public NotThursdayException() {

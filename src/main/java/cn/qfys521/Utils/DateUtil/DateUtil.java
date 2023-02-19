@@ -1,13 +1,12 @@
-package cn.qfys521.Utils.DataUtil;
+package cn.qfys521.Utils.DateUtil;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class DataUtil {
+public class DateUtil {
     /**
      * 获取当前日期是星期几<br>
      *
-     * @param date
      * @return 当前日期是星期几
      */
     public int getWeekOfDate() {

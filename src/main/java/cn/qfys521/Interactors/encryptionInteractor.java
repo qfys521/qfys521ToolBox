@@ -21,6 +21,7 @@ public class encryptionInteractor extends SimpleInteractors<qfys521ToolBoxPlugin
 
     /**
      * 生成 uuid
+     *
      * @param user user
      */
     @Filter("UUID生成")
@@ -36,8 +37,8 @@ public class encryptionInteractor extends SimpleInteractors<qfys521ToolBoxPlugin
     /**
      * for循环生成uuid
      *
-     * @param user XiaoMingUser 
-     * @param 数量   
+     * @param user XiaoMingUser
+     * @param 数量
      */
 
     @Filter("批量UUID生成 {数量}")
@@ -66,7 +67,6 @@ public class encryptionInteractor extends SimpleInteractors<qfys521ToolBoxPlugin
     }
 
     /**
-     *
      * @param user user
      * @param text test
      */

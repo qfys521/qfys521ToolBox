@@ -14,10 +14,10 @@ public class genshinImpactInteractor extends SimpleInteractors<qfys521ToolBoxPlu
     final String perm = "qfys521ToolBox";
 
     /**
-     * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"nowCount{@link genshinImpactInteractor}" 
+     * 首先使用 {@link cn.chuanwise.xiaoming.annotation.FilterParameter} 获取参数，即:"nowCount{@link genshinImpactInteractor}"
      * 随后，进行判断树脂数量
      *
-     * @param user XiaoMingUser
+     * @param user     XiaoMingUser
      * @param nowCount nowCount
      */
     @Filter("树脂计算工具 {nowCount}")

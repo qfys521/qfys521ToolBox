@@ -13,8 +13,8 @@ import cn.qfys521.qfys521ToolBoxPlugin;
  */
 public class MD5Interactor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     /**
-     * @param user  XiaoMingUser
-     * @param str str
+     * @param user XiaoMingUser
+     * @param str  str
      */
     @Filter("MD5 {r:str}")
     @Required("qfys521ToolBox.encryption.MD5")

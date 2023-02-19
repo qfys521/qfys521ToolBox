@@ -22,7 +22,6 @@ public abstract class AbstractFuzzyEvaluator {
     private final float[][] distances;
 
     /**
-     *
      * @param str1 str
      * @param str2 str
      */
@@ -73,7 +72,6 @@ public abstract class AbstractFuzzyEvaluator {
     }
 
     /**
-     *
      * @return this.distances[this.distances.length - 1][this.distances[0].length - 1]
      */
     public float getDistance() {
@@ -81,37 +79,32 @@ public abstract class AbstractFuzzyEvaluator {
     }
 
     /**
-     *
-     * @param src src
+     * @param src  src
      * @param dest dest
      * @return boolean
      */
     protected abstract boolean isCharEqual(char src, char dest);
 
     /**
-     *
      * @param ch ch
      * @return float
      */
     protected abstract float getInsertionDistance(char ch);
 
     /**
-     *
      * @param ch ch
      * @return float
      */
     protected abstract float getDeletionDistance(char ch);
 
     /**
-     *
-     * @param src src
+     * @param src  src
      * @param dest dest
      * @return float
      */
     protected abstract float getReplacementDistance(char src, char dest);
 
     /**
-     *
      * @param head head
      * @param tail tail
      * @return float

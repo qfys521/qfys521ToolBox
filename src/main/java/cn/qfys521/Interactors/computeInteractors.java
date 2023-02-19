@@ -18,7 +18,6 @@ import java.util.List;
 @SuppressWarnings("all")
 public class computeInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> {
     /**
-     *
      * @param user user
      * @param text test
      */

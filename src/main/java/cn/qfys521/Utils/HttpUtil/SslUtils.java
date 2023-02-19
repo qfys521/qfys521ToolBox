@@ -3,10 +3,11 @@ package cn.qfys521.Utils.HttpUtil;//工具类
 import javax.net.ssl.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+
 /**
  * java 信任SSL证书
- * @author Administrator
  *
+ * @author Administrator
  */
 public class SslUtils {
 
@@ -18,7 +19,20 @@ public class SslUtils {
         sc.init(null, trustAllCerts, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
     }
-    static class miTM implements TrustManager,X509TrustManager {
+
+    /**
+     * 忽略HTTPS请求的SSL证书，必须在openConnection之前调用
+     *
+     * @throws Exception
+     */
+    public static void ignoreSsl() throws Exception {
+        HostnameVerifier hv = (urlHostName, session) -> true;
+        System.out.println("忽略HTTPS请求的SSL证书");
+        trustAllHttpsCertificates();
+        HttpsURLConnection.setDefaultHostnameVerifier(hv);
+    }
+
+    static class miTM implements TrustManager, X509TrustManager {
         public X509Certificate[] getAcceptedIssuers() {
             return null;
         }
@@ -40,16 +54,5 @@ public class SslUtils {
                 throws CertificateException {
             return;
         }
-    }
-
-    /**
-     * 忽略HTTPS请求的SSL证书，必须在openConnection之前调用
-     * @throws Exception
-     */
-    public static void ignoreSsl() throws Exception{
-        HostnameVerifier hv = (urlHostName, session) -> true;
-        System.out.println("忽略HTTPS请求的SSL证书");
-        trustAllHttpsCertificates();
-        HttpsURLConnection.setDefaultHostnameVerifier(hv);
     }
 }

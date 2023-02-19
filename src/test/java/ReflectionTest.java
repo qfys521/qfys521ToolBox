@@ -1,13 +1,14 @@
-
-
-import java.util.*;
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Scanner;
 
 /*
     This program uses reflection to print all features of a class.
  */
 public class ReflectionTest {
-    public static void main(String[] args) throws ReflectiveOperationException{
+    public static void main(String[] args) throws ReflectiveOperationException {
         StringBuilder sb = new StringBuilder();
         //read class name from command line args or user input
         String name;
@@ -39,12 +40,13 @@ public class ReflectionTest {
 
     /**
      * Prints all constructors of a class
+     *
      * @param cl a class
      */
-    public static void printConstructors(Class cl){
+    public static void printConstructors(Class cl) {
         Constructor[] constructors = cl.getDeclaredConstructors();
 
-        for (Constructor c : constructors){
+        for (Constructor c : constructors) {
             String name = c.getName();
             System.out.print("   ");
             String modifiers = Modifier.toString(c.getModifiers());
@@ -54,7 +56,7 @@ public class ReflectionTest {
 
             //print parameter Types
             Class[] parmaTypes = c.getParameterTypes();
-            for (int j = 0;j < parmaTypes.length;j++){
+            for (int j = 0; j < parmaTypes.length; j++) {
                 if (j > 0)
                     System.out.print(", ");
                 System.out.print(parmaTypes[j].getName());
@@ -65,12 +67,13 @@ public class ReflectionTest {
 
     /**
      * Print all methods of a class
+     *
      * @param cl a class
      */
-    public static void printMethods(Class cl){
+    public static void printMethods(Class cl) {
         Method[] methods = cl.getDeclaredMethods();
 
-        for (Method m : methods){
+        for (Method m : methods) {
             Class retType = m.getReturnType();
             String name = m.getName();
 
@@ -83,7 +86,7 @@ public class ReflectionTest {
 
             //print parameter types
             Class[] paramTypes = m.getParameterTypes();
-            for (int j = 0;j < paramTypes.length;j++){
+            for (int j = 0; j < paramTypes.length; j++) {
                 if (j > 0)
                     System.out.print("'");
                 System.out.print(paramTypes[j].getName());
@@ -91,14 +94,16 @@ public class ReflectionTest {
             System.out.println(");");
         }
     }
+
     /**
      * Print all fields of a class
+     *
      * @param cl a class
      */
-    public static void printFields(Class cl){
+    public static void printFields(Class cl) {
         Field[] fields = cl.getDeclaredFields();
 
-        for (Field f : fields){
+        for (Field f : fields) {
             Class type = f.getType();
             String name = f.getName();
             System.out.print("   ");

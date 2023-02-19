@@ -41,9 +41,9 @@ public class pluginsInteractors extends SimpleInteractors<qfys521ToolBoxPlugin> 
     /**
      * 获取插件信息
      *
-     * @param user XiaoMingUser
+     * @param user   XiaoMingUser
      * @param plugin plugin
-     * @param Name Name
+     * @param Name   Name
      */
     @Filter("(plugins|pl) info {r:PluginName}")
     @Required("core.info")

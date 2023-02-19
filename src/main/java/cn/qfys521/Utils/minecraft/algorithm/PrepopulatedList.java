@@ -3016,7 +3016,6 @@ public final class PrepopulatedList {
     };
 
     /**
-     *
      * @return aggregatedList
      */
     public static String[] getEverything() {

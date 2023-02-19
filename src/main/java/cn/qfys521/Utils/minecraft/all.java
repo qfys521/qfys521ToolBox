@@ -18,7 +18,6 @@ import java.util.List;
 public class all {
 
     /**
-     *
      * @param N n
      * @return List
      */

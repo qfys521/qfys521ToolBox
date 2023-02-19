@@ -26,6 +26,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
 
     /**
      * 获取插件实例
+     *
      * @return INSTANCE
      */
     public static qfys521ToolBoxPlugin getINSTANCE() {

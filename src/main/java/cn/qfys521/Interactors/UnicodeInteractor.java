@@ -16,7 +16,7 @@ public class UnicodeInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     UnicodeUtil unicodeUtil = new UnicodeUtil();
 
     /**
-     * @param BotSender BotSender
+     * @param BotSender  BotSender
      * @param sourceData sourceData
      */
     @Filter("UnicodeEncode {r:sourceData}")
@@ -33,7 +33,7 @@ public class UnicodeInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     }
 
     /**
-     * @param user XiaoMingUser
+     * @param user          XiaoMingUser
      * @param unicodeEncode unicodeEncode
      */
     @Filter("UnicodeDecode {r:unicodeEncode}")

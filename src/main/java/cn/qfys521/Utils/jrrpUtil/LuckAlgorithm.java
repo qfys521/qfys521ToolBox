@@ -18,7 +18,7 @@ public class LuckAlgorithm {
 
     /**
      * @param identifier identifier
-     * @param key key
+     * @param key        key
      * @return int
      */
     public static int get(long identifier, String key) {
@@ -26,9 +26,9 @@ public class LuckAlgorithm {
     }
 
     /**
-     * @param date date
+     * @param date       date
      * @param identifier identifier
-     * @param key key
+     * @param key        key
      * @return int
      */
     // 获取特定日期的数据
@@ -37,9 +37,9 @@ public class LuckAlgorithm {
     }
 
     /**
-     * @param day day
+     * @param day        day
      * @param identifier identifier
-     * @param key key
+     * @param key        key
      * @return int
      */
     // 获取特定天数的数据(用于测试随机分布)
@@ -64,7 +64,7 @@ public class LuckAlgorithm {
     }
 
     /**
-     * @param day day
+     * @param day        day
      * @param identifier identifier
      * @return long
      */
@@ -75,7 +75,7 @@ public class LuckAlgorithm {
 
     /**
      * @param seed seed
-     * @param key key
+     * @param key  key
      * @return int
      */
     // 核心算法符合标准HOTP算法(RFC4226)，方便快速迁移到具有该库的其他平台
@@ -86,8 +86,8 @@ public class LuckAlgorithm {
     }
 
     /**
-     * @param seed seed
-     * @param key key
+     * @param seed   seed
+     * @param key    key
      * @param digits digits
      * @return int
      */
@@ -96,8 +96,8 @@ public class LuckAlgorithm {
     }
 
     /**
-     * @param seed seed
-     * @param key key
+     * @param seed   seed
+     * @param key    key
      * @param digits digits
      * @return int
      */

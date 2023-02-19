@@ -18,7 +18,7 @@ public class FilesInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     /**
      * 获取文件信息
      *
-     * @param user XiaoMingUser 
+     * @param user XiaoMingUser
      * @param path path
      */
     @Filter("FileInformation {path}")
