@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import net.mamoe.mirai.message.data.ForwardMessage;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -390,37 +391,48 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(urlCodeUtil.URLCodeDecode(text));
     }
 
-    @Filter("testException")
-    public void te(XiaoMingUser user) {
-        if (new Config().isCrazyEnabled()) {
-            throw new CrazyThursdayException("v我50！");
-        } else {
-            throw new NotThursdayException("今天不是星期四呢");
-        }
-    }
+//    @Filter("testException")
+//    public void te(XiaoMingUser user) {
+//        try {
+//            if (new Config().isCrazyEnabled()) {
+//                throw new CrazyThursdayException("v我50！");
+//            } else {
+//                throw new NotThursdayException("今天不是星期四呢");
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
-    @Filter("(v|V|微)(ivo|IVO|我)50")
-    public void Crazy(XiaoMingUser user) {
-        DateUtil dateUtil = new DateUtil();
-        if (dateUtil.getWeekOfDate() == 4) {
-            throw new CrazyThursdayException("v我50！");
-        } else {
-            throw new NotThursdayException("今天不是星期四呢");
-        }
+//    @Filter("(v|V|微)(ivo|IVO|我)50")
+//    public void Crazy(XiaoMingUser user) {
+//        DateUtil dateUtil = new DateUtil();
+//        if (dateUtil.getWeekOfDate() == 4) {
+//            throw new CrazyThursdayException("v我50！");
+//        } else {
+//            throw new NotThursdayException("今天不是星期四呢");
+//        }
+//    }
 
-    }
+//    @Filter("关闭疯狂星期四异常")
+//    public void Crazyfalse(XiaoMingUser user) {
+//        try {
+//            new Config().setCrazyEnabled(false);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        xiaoMingBot.getFileSaver().save();
+//        user.sendMessage("已尝试关闭");
+//    }
 
-    @Filter("关闭疯狂星期四异常")
-    public void Crazyfalse(XiaoMingUser user) {
-        new Config().setCrazyEnabled(false);
-        xiaoMingBot.getFileSaver().save();
-        user.sendMessage("已尝试关闭");
-    }
-
-    @Filter("开启疯狂星期四异常")
-    public void Crazytrue(XiaoMingUser user) {
-        new Config().setCrazyEnabled(true);
-        xiaoMingBot.getFileSaver().save();
-        user.sendMessage("已尝试开启");
-    }
+//    @Filter("开启疯狂星期四异常")
+//    public void Crazytrue(XiaoMingUser user) {
+//        try {
+//            new Config().setCrazyEnabled(true);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        xiaoMingBot.getFileSaver().save();
+//        user.sendMessage("已尝试开启");
+//    }
 }

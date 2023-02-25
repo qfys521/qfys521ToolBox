@@ -4,8 +4,13 @@ package cn.qfys521;
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
 import cn.qfys521.Configs.Config;
 import cn.qfys521.Interactors.*;
+import cn.qfys521.Utils.DataUtil.yamlUtil;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 插件主类
@@ -23,6 +28,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
      * 构造一个插件主类的对象。
      */
     private static final qfys521ToolBoxPlugin INSTANCE = new qfys521ToolBoxPlugin();
+
 
     /**
      * 获取插件实例
@@ -51,9 +57,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new FilesInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
-        getDataFolder().mkdir();
-        Config Config = xiaoMingBot.getFileLoader().loadOrSupply(Config.class, new File(getDataFolder(), "config.json"), cn.qfys521.Configs.Config::new);
-        xiaoMingBot.getFileSaver().readyToSave(Config);
     }
+    final String PATH = "./plugins/qfys521ToolBox/";
 
 }

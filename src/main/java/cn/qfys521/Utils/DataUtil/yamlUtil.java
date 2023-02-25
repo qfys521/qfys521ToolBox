@@ -18,17 +18,6 @@ public class yamlUtil {
         reader.close();
         return map;
     }
-
-    public void write(String path, Map<Object, Object> map) throws IOException {
-        Yaml yml = new Yaml();
-        FileWriter writer = new FileWriter(path, true);
-        BufferedWriter buffer = new BufferedWriter(writer);
-        buffer.newLine();
-        yml.dump(map, buffer);
-        buffer.close();
-        writer.close();
-    }
-
     public void setPath(String path) {
         this.path = path;
     }
@@ -45,13 +34,23 @@ public class yamlUtil {
 
     public void write(Map<Object, Object> map) throws IOException {
         Yaml yml = new Yaml();
-        FileWriter writer = new FileWriter(this.path, true);
+        FileWriter writer = new FileWriter(this.path, false);
         BufferedWriter buffer = new BufferedWriter(writer);
         buffer.newLine();
         yml.dump(map, buffer);
         buffer.close();
         writer.close();
     }
+    public void write(String path, Map<Object, Object> map) throws IOException {
+        Yaml yml = new Yaml();
+        FileWriter writer = new FileWriter(path, false);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        buffer.newLine();
+        yml.dump(map, buffer);
+        buffer.close();
+        writer.close();
+    }
+
 
 
 }
