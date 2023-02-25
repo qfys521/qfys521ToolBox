@@ -15,8 +15,8 @@ public class yaml {
         l.add("Chuanwise");
         l.add("lyrinka");
         Map<Object, Object> map = new HashMap<>();
-        map.put("name","qfys521");
-        map.put("author",l);
+        map.put("name", "qfys521");
+        map.put("author", l);
 
         yaml.write(map);
     }

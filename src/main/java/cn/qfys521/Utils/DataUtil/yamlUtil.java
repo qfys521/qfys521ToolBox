@@ -18,6 +18,7 @@ public class yamlUtil {
         reader.close();
         return map;
     }
+
     public void setPath(String path) {
         this.path = path;
     }
@@ -41,6 +42,7 @@ public class yamlUtil {
         buffer.close();
         writer.close();
     }
+
     public void write(String path, Map<Object, Object> map) throws IOException {
         Yaml yml = new Yaml();
         FileWriter writer = new FileWriter(path, false);
@@ -50,7 +52,6 @@ public class yamlUtil {
         buffer.close();
         writer.close();
     }
-
 
 
 }
