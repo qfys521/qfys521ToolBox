@@ -3,6 +3,13 @@ package cn.qfys521;
 
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
 import cn.qfys521.Interactors.*;
+import cn.qfys521.Utils.DataUtil.yamlUtil;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 插件主类
@@ -20,7 +27,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
      * 构造一个插件主类的对象。
      */
     private static final qfys521ToolBoxPlugin INSTANCE = new qfys521ToolBoxPlugin();
-    final String PATH = "./plugins/qfys521ToolBox/";
+    final String PLUGIN_ROOT = getDataFolder().getPath();
 
     /**
      * 获取插件实例
@@ -37,6 +44,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
     @Override
     @SuppressWarnings("all")
     public void onEnable() {
+        DefaultConfig();
         getXiaoMingBot().getInteractorManager().registerInteractors(new ReflectionTest(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new pluginsInteractors(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new genshinImpactInteractor(), this);
@@ -50,4 +58,23 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
     }
 
+    public void DefaultConfig(){
+        yamlUtil yamlUtil = new yamlUtil();
+        File f = new File(PLUGIN_ROOT+"config.yml");
+        yamlUtil.setPath(PLUGIN_ROOT+"config.yml");
+        if(f.length()==0){
+            List<String> l = new ArrayList<>();
+            l.add("qfys521");
+            l.add("Chuanwise");
+            l.add("lyrinka");
+            Map<Object, Object> map = new HashMap<>();
+            map.put("name", "qfys521");
+            map.put("author", l);
+            try {
+                yamlUtil.write(map);
+            }catch (Exception e) {
+                getLogger().error(e.toString());
+            }
+        }
+    }
 }

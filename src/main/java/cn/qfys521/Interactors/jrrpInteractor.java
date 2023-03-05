@@ -14,7 +14,7 @@ import java.util.Objects;
 public class jrrpInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
 
-    private static final String KEY = "";
+    private static final String KEY = "77yBQCPvv6Ul4oCm4oCmJirvv6UqJiXigKbigKYmJeKApuKApiYqJjk4N2Y5OHNmODlzOGdyZ2h3aXVnaHNyaXVnaGVzcml1";
 
     /**
      * 通过{@link cn.qfys521.Utils.jrrpUtil.LuckAlgorithm} 进行加密并计算

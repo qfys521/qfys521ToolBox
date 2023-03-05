@@ -1,6 +1,8 @@
 package cn.qfys521.Utils.HttpUtil;
 
 
+import okhttp3.*;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 import java.io.*;
@@ -8,13 +10,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
 
 import static cn.qfys521.Utils.HttpUtil.SslUtils.trustAllHttpsCertificates;
 
 /**
  * @author qfys521
  */
-public class getURLData {
+public class HttpUtils {
     /**
      * @param url url
      * @return sb.toString()
@@ -52,7 +55,8 @@ public class getURLData {
      * @return sb.toString()
      * @throws IOException IOE
      */
-    public String PostUrlData(String Url, String PostData) throws IOException {
+    public String PostUrlData(String Url, String PostData) throws Exception {
+        trustAllHttpsCertificates();
         URL url = new URL(Url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -84,6 +88,29 @@ public class getURLData {
         os.close();
         return sb.toString();
     }
+
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
+    OkHttpClient client = new OkHttpClient();
+
+    public String post(String url, String json) throws Exception {
+        trustAllHttpsCertificates();
+        RequestBody body = RequestBody.create(json, JSON);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
+
 }
 
 

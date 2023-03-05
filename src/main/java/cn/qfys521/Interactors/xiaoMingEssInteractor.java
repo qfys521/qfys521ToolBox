@@ -6,7 +6,7 @@ import cn.chuanwise.xiaoming.annotation.Required;
 import cn.chuanwise.xiaoming.interactor.SimpleInteractors;
 import cn.chuanwise.xiaoming.user.XiaoMingUser;
 import cn.qfys521.Utils.ForwardMessageUtil.ForwardMessageBuilder;
-import cn.qfys521.Utils.HttpUtil.getURLData;
+import cn.qfys521.Utils.HttpUtil.HttpUtils;
 import cn.qfys521.Utils.encryption.URLCodeUtil;
 import cn.qfys521.qfys521ToolBoxPlugin;
 import com.alibaba.fastjson.JSONArray;
@@ -68,7 +68,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("一言")
     public void yiyan(XiaoMingUser user) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("https://api.oick.cn/yiyan/api.php");
         user.sendMessage(request);
     }
@@ -79,7 +79,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("来句舔狗|舔我")
     public void tiangou(XiaoMingUser user) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("https://api.oick.cn/dog/api.php");
         user.sendMessage(request);
     }
@@ -90,7 +90,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("来句毒鸡汤|毒鸡汤")
     public void du(XiaoMingUser user) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("https://api.oick.cn/dutang/api.php");
         user.sendMessage(request);
     }
@@ -101,7 +101,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("来句社会经典语录|社会经典语录")
     public void yvlu(XiaoMingUser user) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("https://api.oick.cn/yulu/api.php");
         user.sendMessage(request);
     }
@@ -113,7 +113,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("ICP备案查询 {url}")
     public void icp(XiaoMingUser user, @FilterParameter("url") String url) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("https://api.oick.cn/icp/api.php?url=" + url);
         JSONObject json = JSONObject.parseObject(request);
         String code = json.getString("code");
@@ -143,7 +143,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("历史上的今天")
     public void history(XiaoMingUser user) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("https://api.oick.cn/lishi/api.php");
         JSONObject json = JSONObject.parseObject(request);
         String code = json.getString("code");
@@ -171,7 +171,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     @Required("qfys521ToolBox.ai")
     public void aiQuestion(XiaoMingUser user, @FilterParameter("问题") String Question) {
         String qs1 = URLEncoder.encode(Question, StandardCharsets.UTF_8);
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = null;
         try {
             request = get.getUrlData("https://api.kuxi.tech/openai/completions?contents=" + qs1);
@@ -203,7 +203,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("翻译 {内容}")
     public void translation(XiaoMingUser user, @FilterParameter("内容") String text) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/fanyi.php?msg=" + text + "&hh=,");
         String[] requests = request.split(",");
         StringBuilder stringBuilder = new StringBuilder();
@@ -222,7 +222,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("天气 {地区}")
     public void weather(XiaoMingUser user, @FilterParameter("地区") String diqu) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/qqtq.php?msg=" + diqu + "&hh=,");
         String[] requests = request.split(",");
         StringBuilder stringBuilder = new StringBuilder();
@@ -240,7 +240,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("安慰语句|求安慰")
     public void anwei(XiaoMingUser user) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Comforting.php?");
         user.sendMessage(request);
     }
@@ -252,7 +252,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("短网址 {rn:url}")
     public void duanwangzhi(XiaoMingUser user, @FilterParameter("url") String url) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/dwz.php?url=" + url);
         JSONObject jsonObject = JSONObject.parseObject(request);
         String code = jsonObject.getString("code");
@@ -273,7 +273,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
     @Required("qfys521ToolBox.gs")
     public void chouka(XiaoMingUser user, @FilterParameter("次数") int cishu) throws Exception {
         if (cishu <= 80 && cishu > 0) {
-            getURLData get = new getURLData();
+            HttpUtils get = new HttpUtils();
             String request = get.getUrlData("http://yichen.api.z7zz.cn/api/Original_god.php?num=" + cishu);
             JSONObject j = JSONObject.parseObject(request);
             ForwardMessageBuilder forwardMessageBuilder = new ForwardMessageBuilder();
@@ -332,7 +332,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         String tmp = "OfflinePlayer:" + PlayerName;
         UUID object = UUID.nameUUIDFromBytes(tmp.getBytes());
         String offline = object.toString();
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         try {
 
 
@@ -354,7 +354,7 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
      */
     @Filter("星座运势 {星座}")
     public void xz(XiaoMingUser user, @FilterParameter("星座") String text) throws Exception {
-        getURLData get = new getURLData();
+        HttpUtils get = new HttpUtils();
         String request = get.getUrlData("http://yichen.api.z7zz.cn/api/xingzuo.php?msg=" + text + "&hh=,");
         String[] requests = request.split(",");
         StringBuilder stringBuilder = new StringBuilder();
