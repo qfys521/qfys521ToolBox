@@ -50,7 +50,7 @@ public class openAIInteracotr extends SimpleInteractors<qfys521ToolBoxPlugin>{
             try {
                 if (!user.nextMessage().toString().equals("退出")) break;
             } catch (InterruptedException e) {
-                //TODO
+                System.out.println(e.toString());
             }
             HttpUtils httpUtils = new HttpUtils();
             try {
