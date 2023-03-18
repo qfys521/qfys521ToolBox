@@ -4,6 +4,7 @@
 
 ----
 注册的监听器
+
 ```java
 public class qfys521ToolBoxPlugin extends JavaPlugin {
     public void onEnable() {
@@ -25,6 +26,7 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
 ----
 
 指令列表
+
 ```text
 1、Base64Decode  [文本内容]
 2、Base64Encode  [文本内容]
@@ -63,6 +65,5 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
 35、类查询  [class]
 36、翻译  [内容]
 ```
-
 
 [![Security Status](https://www.murphysec.com/platform3/v3/badge/1612070168264486912.svg?t=1)](https://www.murphysec.com/accept?code=7268dc904db6cfcd813bde7dc7ebc840&type=1&from=2&t=2)

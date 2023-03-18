@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 @SuppressWarnings("all")
-public class ReflectionTest extends SimpleInteractors<qfys521ToolBoxPlugin> {
+public class ReflectionInteractor extends SimpleInteractors<qfys521ToolBoxPlugin> {
     StringBuilder sb = new StringBuilder();
 
     @Filter("类查询 {rn:class}")

@@ -18,6 +18,9 @@ import static cn.qfys521.Utils.HttpUtil.SslUtils.trustAllHttpsCertificates;
  * @author qfys521
  */
 public class HttpUtils {
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    OkHttpClient client = new OkHttpClient();
+
     /**
      * @param url url
      * @return sb.toString()
@@ -88,10 +91,6 @@ public class HttpUtils {
         os.close();
         return sb.toString();
     }
-
-    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-
-    OkHttpClient client = new OkHttpClient();
 
     public String post(String url, String json) throws Exception {
         trustAllHttpsCertificates();
