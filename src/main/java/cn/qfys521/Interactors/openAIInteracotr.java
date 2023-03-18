@@ -53,7 +53,7 @@ public class openAIInteracotr extends SimpleInteractors<qfys521ToolBoxPlugin> {
 
         try {
             HttpUtils get = new HttpUtils();
-            String request = get.post("https://api.kuxi.tech/openai/chat", "{ \"data\": [ { \"role\": \"user\", \"content\":\" " + Question + "\" }]}");
+            String request = get.post("https://api.kuxi.tech/openai/chat", "{ \"data\": [ { \"role\": \"user\", \"content\":\" " + Question.toString().replace("\"","'") + "\" }]}");
             JSONObject json = JSONObject.parseObject(request);
             StringBuilder sb = new StringBuilder();
             JSONArray results = json.getJSONArray("data");
