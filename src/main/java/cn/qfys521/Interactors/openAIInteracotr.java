@@ -32,7 +32,7 @@ public class openAIInteracotr extends SimpleInteractors<qfys521ToolBoxPlugin> {
             user.sendMessage(String.valueOf(sb));
         } catch (Exception e) {
             var ex = e.toString();
-            if (ex.length() > 30) {
+            if (ex.length() > 50) {
                 user.sendError("在过程中发生了异常: ");
                 user.sendError(ex.substring(0, 50) + "\n and more...");
                 e.printStackTrace();
@@ -60,7 +60,7 @@ public class openAIInteracotr extends SimpleInteractors<qfys521ToolBoxPlugin> {
             user.sendMessage(String.valueOf(sb));
         } catch (Exception e) {
             var ex = e.toString();
-            if (ex.length() > 30) {
+            if (ex.length() > 50) {
                 user.sendError("在过程中发生了异常: ");
                 user.sendError(ex.substring(0, 50) + "\n and more...");
                 e.printStackTrace();
