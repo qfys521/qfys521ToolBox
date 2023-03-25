@@ -48,7 +48,6 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
         getXiaoMingBot().getInteractorManager().registerInteractors(new FilesInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
         getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new openAIInteracotr(), this);
 
     }
 
