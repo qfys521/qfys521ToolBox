@@ -357,48 +357,32 @@ public class xiaoMingEssInteractor extends SimpleInteractors<qfys521ToolBoxPlugi
         user.sendMessage(urlCodeUtil.URLCodeDecode(text));
     }
 
-//    @Filter("testException")
-//    public void te(XiaoMingUser user) {
-//        try {
-//            if (new Config().isCrazyEnabled()) {
-//                throw new CrazyThursdayException("v我50！");
-//            } else {
-//                throw new NotThursdayException("今天不是星期四呢");
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    @Filter("小爱同学 {rn:问题}")
+    public void MiAI(XiaoMingUser user,@FilterParameter("问题")String text){
+        HttpUtils http = new HttpUtils();
+        try {
+            user.sendMessage(http.getUrlData("http://tfapi.top/API/xiaoai.php?type=text&msg="+text));
+        } catch (Exception e) {
+            user.sendError("发生了异常，详情请看Console");
+            getLogger().error(String.valueOf(e));
+        }
+    }
 
-//    @Filter("(v|V|微)(ivo|IVO|我)50")
-//    public void Crazy(XiaoMingUser user) {
-//        DateUtil dateUtil = new DateUtil();
-//        if (dateUtil.getWeekOfDate() == 4) {
-//            throw new CrazyThursdayException("v我50！");
-//        } else {
-//            throw new NotThursdayException("今天不是星期四呢");
-//        }
-//    }
-
-//    @Filter("关闭疯狂星期四异常")
-//    public void Crazyfalse(XiaoMingUser user) {
-//        try {
-//            new Config().setCrazyEnabled(false);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        xiaoMingBot.getFileSaver().save();
-//        user.sendMessage("已尝试关闭");
-//    }
-
-//    @Filter("开启疯狂星期四异常")
-//    public void Crazytrue(XiaoMingUser user) {
-//        try {
-//            new Config().setCrazyEnabled(true);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        xiaoMingBot.getFileSaver().save();
-//        user.sendMessage("已尝试开启");
-//    }
+    @Filter("小爱同学")
+    public void MiAIs(XiaoMingUser user){
+        HttpUtils http = new HttpUtils();
+        while (true) {
+            try {
+                if (!user.nextMessage().equals("退出")) break;
+                else if (!user.nextMessage().equals("结束"))break;
+                else user.sendMessage(http.getUrlData("http://tfapi.top/API/xiaoai.php?type=text&msg="+user.nextMessage()));
+            } catch (InterruptedException e) {
+                user.sendError("发生了异常");
+                getLogger().error(String.valueOf(e));
+            } catch (Exception e) {
+                user.sendError("发生了异常");
+                getLogger().error(String.valueOf(e));
+            }
+        }
+    }
 }

@@ -1,8 +1,18 @@
 package cn.qfys521;
 
 
+import cn.chuanwise.xiaoming.interactor.Interactors;
+import cn.chuanwise.xiaoming.interactor.customizer.InteractorCustomizer;
+import cn.chuanwise.xiaoming.object.PluginObject;
 import cn.chuanwise.xiaoming.plugin.JavaPlugin;
+import cn.chuanwise.xiaoming.plugin.Plugin;
 import cn.qfys521.Interactors.*;
+import cn.qfys521.Utils.DataUtil.yamlUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 插件主类
@@ -37,20 +47,31 @@ public class qfys521ToolBoxPlugin extends JavaPlugin {
     @Override
     @SuppressWarnings("all")
     public void onEnable() {
-        getXiaoMingBot().getInteractorManager().registerInteractors(new ReflectionInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new pluginsInteractors(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new genshinImpactInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new computeInteractors(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new encryptionInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new mcIdGetInteractors(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new UnicodeInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new MD5Interactor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new FilesInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new xiaoMingEssInteractor(), this);
-        getXiaoMingBot().getInteractorManager().registerInteractors(new jrrpInteractor(), this);
+        this.regInteractors(this,
+                new ReflectionInteractor(),
+                new pluginsInteractors(),
+                new genshinImpactInteractor(),
+                new computeInteractors(),
+                new encryptionInteractor(),
+                new mcIdGetInteractors(),
+                new UnicodeInteractor(),
+                new MD5Interactor(),
+                new FilesInteractor(),
+                new xiaoMingEssInteractor(),
+                new jrrpInteractor()
+        );
+    }
+    public <T extends Plugin> void regInteractors(T plugin, Interactors<T>... interactors){
+        for (Interactors<T> interactor : interactors) {
+            this.registerInteractors(interactor, null, plugin);
+        }
 
     }
-
-
-
+    public void registerInteractors(Interactors interactors, InteractorCustomizer interactorCustomizer, Plugin plugin) {
+        if (interactors instanceof PluginObject) {
+            PluginObject pluginObject = (PluginObject) interactors;
+            pluginObject.setPlugin(plugin);
+            pluginObject.setXiaoMingBot(this.getXiaoMingBot());
+        }
+    }
 }
